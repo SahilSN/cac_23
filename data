@@ -1,0 +1,13 @@
+
+import pandas as pd
+import os
+
+print('test')
+for dirname, _, filenames in os.walk('/kaggle/input'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+df = pd.read_csv("/kaggle/input/smart-home-dataset-with-weather-information/HomeC.csv",low_memory=False)
+print(f'HomeC.csv : {df.shape}')
+print(df.head(3))
+print('test')
