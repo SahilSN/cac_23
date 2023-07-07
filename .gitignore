@@ -8,7 +8,8 @@ __pycache__/
 
 #data
 *.csv
-
+HomeC.csv
+HomeC.csv/
 # Distribution / packaging
 .Python
 build/
