@@ -8,7 +8,7 @@ __pycache__/
 
 *.csv
 HomeC
-HomeC.csv
+csv_data/HomeC.csv
 
 
 # Distribution / packaging

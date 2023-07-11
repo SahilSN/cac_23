@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/",methods=['GET','POST'])
 def index():
     r='test'
-    df = pd.read_csv("HomeC.csv", low_memory=False)
+    df = pd.read_csv("csv_data/HomeC.csv", low_memory=False)
     print(df.head(3))
     return render_template("index.html",r=df.head(3))
 
