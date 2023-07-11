@@ -14,52 +14,6 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import Dense
-'''
-def train_dataset(df):
-    # load the dataset
-    if len(df.axes[1])==10:
-        df_name='use_HO'
-    elif len(df.axes[1])==14:
-        df_name='gen_sol'
-    else:
-        return 'uh oh'
-
-    df = read_csv('csv_data/'+df_name+'.csv', header=None,low_memory=False)
-    #print(df.dtypes)
-
-
-    # split into input and output columns
-    X, y = df.values[:, :-1], df.values[:, -1]
-    # split into train and test datasets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
-    X_train = np.asarray(X_train).astype(np.float32)
-    y_train = np.asarray(y_train).astype(np.float32)
-    X_test = np.asarray(X_test).astype(np.float32)
-    y_test = np.asarray(y_test).astype(np.float32)
-    # determine the number of input features
-    n_features = X_train.shape[1]
-    # define model
-    model = Sequential()
-    model.add(Dense(10, activation='relu', kernel_initializer='he_normal', input_shape=(n_features,)))
-    model.add(Dense(8, activation='relu', kernel_initializer='he_normal'))
-    model.add(Dense(1))
-    # compile the model
-    model.compile(optimizer='adam', loss='mse')
-
-    # fit the model
-    model.fit(X_train, y_train, epochs=50, batch_size=32, verbose=0)
-
-    # evaluate the model
-    error = model.evaluate(X_test, y_test, verbose=0)
-    print('MSE: %.3f, RMSE: %.3f' % (error, sqrt(error)))
-
-    model.save('ml_models/'+df_name+'_model'+'.h5')
-
-train_dataset(df_use)
-print('use_HO training done and saved')
-#train_dataset(df_gen)
-#print('gen_sol training done and saved')
-'''
 import matplotlib.pyplot as plt
 import lightgbm as lgb
 from sklearn.metrics import mean_squared_error
