@@ -36,6 +36,7 @@ df['day'] = df['time'].apply(lambda x : x.day)
 df['weekofyear'] = df['time'].apply(lambda x : x.weekofyear)
 df['hour'] = df['time'].apply(lambda x : x.hour)
 df['minute'] = df['time'].apply(lambda x : x.minute)
+
 df['time'] = pd.to_numeric(original)
 #setting the time of day based on the hour
 def hours2timing(x):

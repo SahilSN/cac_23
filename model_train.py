@@ -36,6 +36,34 @@ def train_dataset(df):
     # split into train and test datasets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
+    '''
+    testing num-leaves for accuracy
+    100:
+    0.3794404
+    0.0367150
+    200:
+    0.3430730
+    0.0331533
+    300:
+    0.3279075
+    0.0324600   
+    400:
+    0.3215256
+    0.0320629
+    500:
+    0.3127692
+    0.0319091
+    700:
+    0.3074441
+    0.0315535
+    900:
+    0.3019604
+    0.0313094
+    1000:
+    0.3013428
+    0.0316533
+    '''
+
 
     # defining parameters
     params = {
@@ -43,7 +71,8 @@ def train_dataset(df):
         'boosting': 'gbdt',
         'objective': 'regression',
         'metric': {'mse'},
-        'num_leaves': 200,
+        'num_leaves': 900,
+        'max_depth':20,
         'drop_rate': 0.05,
         'learning_rate': 0.1,
         'seed': 0,
@@ -70,14 +99,19 @@ def train_dataset(df):
     mse = mean_squared_error(y_test, y_pred)
     rmse = mse**(0.5)
     print("MSE: %.2f" % mse)
-    print("RMSE: %.2f" % rmse)
+    print("RMSE: %.7f" % rmse)
 
     #lgb.save(model,'ml_models/'+df_name+'_model.txt')
     #model.booster_.save_model('ml_models/'+df_name+'_model.txt')
     model.save_model('ml_models/'+df_name+'_model.txt')
     #model.save_model('ml_models/'+df_name+'_model.txt')
 
+
+
+
+
 train_dataset(df_use)
 print('use_HO train done')
 train_dataset(df_gen)
 print('gen_sol train done')
+

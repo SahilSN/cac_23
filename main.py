@@ -8,7 +8,7 @@ def index():
     r='test'
     df = pd.read_csv("csv_data/HomeC.csv", low_memory=False)
     print(df.head(3))
-    return render_template("index.html",r=df.head(3))
+    return render_template("index.html",r=df.head(5))
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
