@@ -26,8 +26,8 @@ df['cloudCover'].replace(['cloudCover'], method='bfill', inplace=True)
 df['cloudCover'] = df['cloudCover'].astype('float')
 
 #converting time column to readable format
-original=df['time']
-df['time'] = pd.DatetimeIndex(pd.date_range('2016-01-01 05:00', periods=len(df),  freq='min'))
+original_time=df['time']
+df['time'] = pd.DatetimeIndex(pd.date_range('2022-07-16 05:00', periods=len(df),  freq='min'))
 
 #extracting the year,month, etc for modeling purposes
 df['year'] = df['time'].apply(lambda x : x.year)
@@ -37,7 +37,7 @@ df['weekofyear'] = df['time'].apply(lambda x : x.weekofyear)
 df['hour'] = df['time'].apply(lambda x : x.hour)
 df['minute'] = df['time'].apply(lambda x : x.minute)
 
-df['time'] = pd.to_numeric(original)
+#df['time'] = pd.to_numeric(original)
 #setting the time of day based on the hour
 def hours2timing(x):
     if x in [22,23,0,1,2,3]:
@@ -58,17 +58,16 @@ df['use_HO'] = df['use']
 df['gen_Sol'] = df['gen']
 df.drop(['use','House overall','gen','Solar'], axis=1, inplace=True)
 #print(df.head(3))
-df_use=df.drop(columns=["time","Dishwasher","Wine cellar","Barn","Well","temperature","humidity","visibility","pressure"
+df_use=df.drop(columns=["Dishwasher","Wine cellar","Barn","Well","temperature","humidity","visibility","pressure"
     ,"windSpeed","cloudCover","windBearing","precipIntensity","dewPoint","precipProbability","Furnace","Kitchen","year"
     ,"weekofyear","minute","timing","gen_Sol"])
-df_gen=df.drop(columns=["time","Dishwasher", "Home office", "Fridge", "Wine cellar", "Garage door", "Barn", "Well",
+df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "Garage door", "Barn", "Well",
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
                                                                                                             ,"use_HO"])
 
-df_use.drop(0)
-df_gen.drop(0)
 
 
 
-df_use.to_csv('csv_data/use_HO.csv',index=False,header=False)
-df_gen.to_csv('csv_data/gen_sol.csv',index=False,header=False)
+
+df_use.to_csv('csv_data/use_HO.csv',index=False)
+df_gen.to_csv('csv_data/gen_sol.csv',index=False)

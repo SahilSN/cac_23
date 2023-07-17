@@ -1,4 +1,6 @@
-from csv_to_dataset import df_use, df_gen
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
+from csv_to_dataset import df_use, df_gen,original_time
 import numpy as np
 from numpy import sqrt
 import pandas as pd
@@ -23,14 +25,17 @@ from sklearn.metrics import accuracy_score
 
 def train_dataset(df):
     # load the dataset
-    if len(df.axes[1])==10:
+    if len(df.axes[1])==11:
         df_name='use_HO'
-    elif len(df.axes[1])==14:
+    elif len(df.axes[1])==15:
         df_name='gen_sol'
     else:
         return 'uh oh'
 
-    df = read_csv('csv_data/'+df_name+'.csv', header=None,low_memory=False)
+    df = read_csv('csv_data/'+df_name+'.csv',low_memory=False)
+
+    df['time']=pd.to_numeric(original_time)
+    #print(df.head(3))
     # Step 1: Initialise and fit LightGBM multiclass model
     X, y = df.values[:, :-1], df.values[:, -1]
     # split into train and test datasets
@@ -89,8 +94,7 @@ def train_dataset(df):
     # fitting the model
     model = lgb.train(params,
                      train_set=lgb_train,
-                     valid_sets=lgb_eval,
-                     early_stopping_rounds=30)
+                     valid_sets=lgb_eval)
 
     # prediction
     y_pred = model.predict(X_test)
@@ -100,6 +104,18 @@ def train_dataset(df):
     rmse = mse**(0.5)
     print("MSE: %.2f" % mse)
     print("RMSE: %.7f" % rmse)
+
+    # visualizing in a plot
+    x_ax = range(len(y_test))
+    plt.figure(figsize=(20, 6))
+    plt.plot(x_ax, y_test, label="original")
+    plt.plot(x_ax, y_pred, label="predicted")
+    plt.title("test and predicted data")
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.legend(loc='best', fancybox=True, shadow=True)
+    plt.grid(True)
+    plt.show()
 
     #lgb.save(model,'ml_models/'+df_name+'_model.txt')
     #model.booster_.save_model('ml_models/'+df_name+'_model.txt')
