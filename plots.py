@@ -1,6 +1,7 @@
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+from io import BytesIO
 import numpy as np
 
 fig, ax = plt.subplots(1, 2, sharex=False, figsize=(10, 4))
@@ -29,4 +30,5 @@ lines_right[2].set_linestyle('--')
 plt.subplots_adjust(wspace=0, hspace=0)
 a.invert_xaxis()
 
-plt.show()
+main_plt=plt
+main_plt.savefig('static/images/line_chart.png')
