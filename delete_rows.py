@@ -1,6 +1,6 @@
 import pandas as pd
 df=pd.read_csv('csv_data/use_HO.csv')
-
+print(df.head(3))
 #drops rows in a dataframe
 for i, row in df.iterrows():
     # Check if the row should be deleted
