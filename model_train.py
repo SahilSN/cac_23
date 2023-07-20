@@ -2,20 +2,8 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
 from csv_to_dataset import df_use, df_gen,original_time
 import numpy as np
-from numpy import sqrt
 import pandas as pd
-# mlp for multiclass classification
-from tensorflow.keras.layers import Dropout
-from tensorflow.keras.layers import BatchNormalization
-from tensorflow.keras.callbacks import EarlyStopping
-
-# load the dataset
-# mlp for regression
-from pandas import read_csv
-import tensorflow as tf
 from sklearn.model_selection import train_test_split
-from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Dense
 import matplotlib.pyplot as plt
 import lightgbm as lgb
 from sklearn.metrics import mean_squared_error
@@ -25,6 +13,7 @@ from sklearn.metrics import accuracy_score
 
 def train_dataset(df):
     # load the dataset
+
     if len(df.axes[1])==11:
         df_name='use_HO'
     elif len(df.axes[1])==15:
@@ -32,7 +21,9 @@ def train_dataset(df):
     else:
         return 'uh oh'
 
-    df = read_csv('csv_data/'+df_name+'.csv',low_memory=False)
+
+
+    df = pd.read_csv('csv_data/'+df_name+'.csv',low_memory=False)
 
     df['time']=pd.to_numeric(original_time)
     #print(df.head(3))
@@ -101,9 +92,21 @@ def train_dataset(df):
 
     # accuracy check
     mse = mean_squared_error(y_test, y_pred)
-    rmse = mse**(0.5)
+    rmse = mse ** (0.5)
+    rmspe = np.sqrt(np.mean(np.square(((y_test - y_pred) / y_test)), axis=0)) * 100
+    accuracy = 1 - mse / np.var(y_test)
+
+    # sklearn_evaulation metric
+    from sklearn.metrics import r2_score
+    score = r2_score(y_test, y_pred)
+
+    print("The accuracy(sk) of our model is {}%".format(round(score, 2) * 100))
+
     print("MSE: %.2f" % mse)
-    print("RMSE: %.7f" % rmse)
+    print("RMSE: %.2f" % rmse)
+    print("RMSPE: %.9f" % rmspe)
+    print("accuracy: %.9f" % accuracy)
+
 
     # visualizing in a plot
     x_ax = range(len(y_test))
@@ -115,7 +118,7 @@ def train_dataset(df):
     plt.ylabel('Y')
     plt.legend(loc='best', fancybox=True, shadow=True)
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
     #lgb.save(model,'ml_models/'+df_name+'_model.txt')
     #model.booster_.save_model('ml_models/'+df_name+'_model.txt')
@@ -128,6 +131,5 @@ def train_dataset(df):
 
 train_dataset(df_use)
 print('use_HO train done')
-train_dataset(df_gen)
-print('gen_sol train done')
+
 
