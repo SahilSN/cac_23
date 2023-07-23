@@ -2,7 +2,7 @@ from sklearn.datasets import make_classification
 from tensorflow.keras.models import load_model
 import lightgbm as lgb
 #model = load_model('ml_models/use_HO_model.h5')
-model = lgb.Booster(model_file='ml_models/incremented_use_model.txt')
+model = lgb.Booster(model_file='ml_models/use_HO.txt')
 # evaluate the model
 
 # make a prediction

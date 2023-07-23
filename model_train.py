@@ -2,6 +2,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
 from csv_to_dataset import df_use, df_gen,original_time
 import numpy as np
+from datetime import datetime
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
@@ -9,6 +10,7 @@ import lightgbm as lgb
 from sklearn.metrics import mean_squared_error
 
 from sklearn.metrics import accuracy_score
+
 
 
 def train_dataset(df):
@@ -21,12 +23,13 @@ def train_dataset(df):
     else:
         return 'uh oh'
 
-
+    print(df_name)
 
     df = pd.read_csv('csv_data/'+df_name+'.csv',low_memory=False)
 
-    df['time']=pd.to_numeric(original_time)
-    #print(df.head(3))
+    DATE_TIME_STRING_FORMAT = '%Y-%m-%d %H:%M:%S'
+    df['time']=datetime.timestamp(datetime.strptime(df['time'],DATE_TIME_STRING_FORMAT))
+    print(df.head(3))
     # Step 1: Initialise and fit LightGBM multiclass model
     X, y = df.values[:, :-1], df.values[:, -1]
     # split into train and test datasets
@@ -129,7 +132,7 @@ def train_dataset(df):
 
 
 
-train_dataset(df_use)
+train_dataset(df_gen)
 print('use_HO train done')
 
 
