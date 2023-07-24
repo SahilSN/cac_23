@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("csv_data/HomeC.csv", low_memory=False)
+df = pd.read_csv("../csv_data/HomeC.csv", low_memory=False)
 pd.set_option('display.max_columns', None)
 
 #removing [kW] from the columns
@@ -27,7 +27,7 @@ df['cloudCover'] = df['cloudCover'].astype('float')
 
 #converting time column to readable format
 original_time=df['time']
-df['time'] = pd.DatetimeIndex(pd.date_range('2022-07-16 05:00', periods=len(df),  freq='min'))
+df['time'] = pd.DatetimeIndex(pd.date_range('2023-01-01 05:00', periods=len(df),  freq='min'))
 
 #extracting the year,month, etc for modeling purposes
 df['year'] = df['time'].apply(lambda x : x.year)

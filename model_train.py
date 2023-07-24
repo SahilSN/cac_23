@@ -1,6 +1,6 @@
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
-from csv_to_dataset import df_use, df_gen,original_time
+from py_vault.csv_to_dataset import df_gen
 import numpy as np
 from datetime import datetime
 import pandas as pd
@@ -8,9 +8,6 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import lightgbm as lgb
 from sklearn.metrics import mean_squared_error
-
-from sklearn.metrics import accuracy_score
-
 
 
 def train_dataset(df):
