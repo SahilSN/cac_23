@@ -1,6 +1,5 @@
 runtime: python
 env: flex
-entrypoint: gunicorn -b :$PORT main:app
-
+entrypoint: gunicorn -b :$PORT main:app --timeout 90
 runtime_config:
  runtime_version: "3.8"
