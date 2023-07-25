@@ -13,8 +13,8 @@ class House:
         self.gen_df=pd.read_csv('csv_data/gen_sol.csv')
         self.use_model=lgb.Booster(model_file='ml_models/use_HO_model.txt')
         self.gen_model=lgb.Booster(model_file='ml_models/gen_sol_model.txt')
-    def battery(self):
-        return self.battery
+    #def battery(self):
+       # return self.battery
     def date_time(self):
         return self.datetime
     def time_stamp(self):
@@ -43,8 +43,6 @@ class House:
 
 
 house=House(456)
-print(house.act_cons('2023-01-01 05:03:00'))
-print(house.act_cons(['2023-01-01 05:03:00']))
-print(house.act_cons(['2023-01-01 05:03:00','2023-01-01 05:06:00']))
+print(house.battery)
 
 

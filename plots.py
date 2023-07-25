@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import numpy as np
 
-fig, ax = plt.subplots(1, 2, sharex=False, figsize=(10, 4))
+fig, ax = plt.subplots(1, 2, sharex=False, figsize=(8, 3))
 
 fig.suptitle('Graphs thing')
 
@@ -31,4 +31,4 @@ plt.subplots_adjust(wspace=0, hspace=0)
 a.invert_xaxis()
 
 main_plt=plt
-main_plt.savefig('static/images/line_chart.png')
+main_plt.savefig('static/images/line_chart2.png')
