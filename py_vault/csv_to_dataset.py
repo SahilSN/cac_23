@@ -4,9 +4,10 @@ Tutorial Notebook using HomeC.csv
 '''
 import numpy as np
 import pandas as pd
+from home_class import house
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("../csv_data/HomeC.csv", low_memory=False)
+df = pd.read_csv("csv_data/HomeC.csv", low_memory=False)
 pd.set_option('display.max_columns', None)
 
 #removing [kW] from the columns
@@ -63,11 +64,40 @@ df_use=df.drop(columns=["Dishwasher","Wine cellar","Barn","Well","temperature","
     ,"weekofyear","minute","timing","gen_Sol"])
 df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "Garage door", "Barn", "Well",
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
-                                                                                                            ,"use_HO"])
+,"use_HO"])
+print(df_use.loc[df.time=='2023-03-31'])
+df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*3)
+for index,row in df_use.iterrows():
+    if row.hour in [10,11,12,13,14,15,16,17,18]:
+        print('before:',row.use_HO)
+        row.use_HO=row.use_HO*0.1
+        print('after:',row.use_HO)
+    else:
+        row.use_HO = row.use_HO * 2
+#df_use['use_HO'] = df_use['use_HO'].apply(lambda x: x*0.35)
 
-
-
+print(df_use.loc[df.time=='2023-03-31'])
 
 
 df_use.to_csv('csv_data/use_HO.csv',index=False)
 df_gen.to_csv('csv_data/gen_sol.csv',index=False)
+
+'''
+df=pd.DataFrame()
+df['time']=df_use['time']
+use_list = df_use.use_HO.tolist()
+gen_list=df_gen.gen_Sol.tolist()
+battery_list=[]
+battery=0
+for i in range(len(use_list)):
+    battery+gen_list[i]-use_list[i]
+    if battery >= 0:
+        battery_list.append(battery)
+    else:
+        battery_list.append(0)
+print(battery_list)
+df['battery']=np.array(battery_list)
+
+df.to_csv('csv_data/battery_data.csv',index=False)
+
+'''
