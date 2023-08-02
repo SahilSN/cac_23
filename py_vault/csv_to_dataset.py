@@ -65,6 +65,7 @@ df_use=df.drop(columns=["Dishwasher","Wine cellar","Barn","Well","temperature","
 df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "Garage door", "Barn", "Well",
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
 ,"use_HO"])
+'''
 print(df_use.loc[df.time=='2023-03-31'])
 df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*3)
 for index,row in df_use.iterrows():
@@ -77,7 +78,7 @@ for index,row in df_use.iterrows():
 #df_use['use_HO'] = df_use['use_HO'].apply(lambda x: x*0.35)
 
 print(df_use.loc[df.time=='2023-03-31'])
-
+'''
 
 df_use.to_csv('csv_data/use_HO.csv',index=False)
 df_gen.to_csv('csv_data/gen_sol.csv',index=False)

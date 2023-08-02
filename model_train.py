@@ -1,6 +1,6 @@
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
-from py_vault.csv_to_dataset import df_gen
+from py_vault.csv_to_dataset import df_gen,df_use
 import numpy as np
 from datetime import datetime
 import pandas as pd
@@ -24,9 +24,9 @@ def train_dataset(df):
 
     df = pd.read_csv('csv_data/'+df_name+'.csv',low_memory=False)
 
-    DATE_TIME_STRING_FORMAT = '%Y-%m-%d %H:%M:%S'
-    df['time']=datetime.timestamp(datetime.strptime(df['time'],DATE_TIME_STRING_FORMAT))
-    print(df.head(3))
+
+    df=df.drop(columns=['time'])
+
     # Step 1: Initialise and fit LightGBM multiclass model
     X, y = df.values[:, :-1], df.values[:, -1]
     # split into train and test datasets
@@ -130,6 +130,7 @@ def train_dataset(df):
 
 
 train_dataset(df_gen)
+train_dataset(df_use)
 print('use_HO train done')
 
 

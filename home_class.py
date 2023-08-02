@@ -19,14 +19,18 @@ class House:
         return self.datetime
     def time_stamp(self):
         return dt.timestamp(self.datetime)
-    def pred_cons(self,cons_data): #predicted consumption
+    def pred_cons(self,datetime): #predicted consumption
+        cons_data = self.use_df.loc[self.use_df['time'] == str(datetime)]
+        cons_data = cons_data.values.flatten().tolist()[1:-1]
         return self.use_model.predict([cons_data])
     def act_cons(self,datetimes): #actual consumption
         if type(datetimes) == str:
             datetimes = [datetimes]
         act_use_list = [self.use_df.loc[self.use_df['time'] == i].use_HO.values.flatten().tolist()[0] for i in datetimes]
         return act_use_list
-    def pred_gen(self,weather_data): #predicted generation
+    def pred_gen(self,datetime): #predicted generation
+        weather_data=self.gen_df.loc[self.gen_df['time']==str(datetime)]
+        weather_data=weather_data.values.flatten().tolist()[1:-1]
         return self.gen_model.predict([weather_data])
     def act_gen(self,datetimes): #actual generation
         if type(datetimes)==str:
@@ -47,6 +51,6 @@ class House:
 
 
 house=House(0)
-print(house.update_battery())
-
+print(house.pred_gen('2023-01-01 05:00:00'))
+print(house.pred_cons('2023-01-01 05:00:00'))
 
