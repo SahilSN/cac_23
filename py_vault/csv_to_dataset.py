@@ -28,7 +28,7 @@ df['cloudCover'] = df['cloudCover'].astype('float')
 
 #converting time column to readable format
 original_time=df['time']
-df['time'] = pd.DatetimeIndex(pd.date_range('2023-01-01 05:00', periods=len(df),  freq='min'))
+df['time'] = pd.DatetimeIndex(pd.date_range('2023-01-01 01:00', periods=len(df),  freq='min'))
 
 #extracting the year,month, etc for modeling purposes
 df['year'] = df['time'].apply(lambda x : x.year)
@@ -65,20 +65,25 @@ df_use=df.drop(columns=["Dishwasher","Wine cellar","Barn","Well","temperature","
 df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "Garage door", "Barn", "Well",
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
 ,"use_HO"])
-'''
-print(df_use.loc[df.time=='2023-03-31'])
-df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*3)
+
+df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*10)
 for index,row in df_use.iterrows():
     if row.hour in [10,11,12,13,14,15,16,17,18]:
-        print('before:',row.use_HO)
-        row.use_HO=row.use_HO*0.1
-        print('after:',row.use_HO)
+        print('uh oh')
+        row.use_HO=row.use_HO*0.01
+
+    elif row.hour in [6,7,8,9]:
+        print('yuh')
+        row.use_HO=row.use_HO*3
+    elif row.hour in [19,20,21,22]:
+        print('double yuh')
+        row.use_HO = row.use_HO * 5
     else:
         row.use_HO = row.use_HO * 2
 #df_use['use_HO'] = df_use['use_HO'].apply(lambda x: x*0.35)
 
-print(df_use.loc[df.time=='2023-03-31'])
-'''
+
+
 
 df_use.to_csv('csv_data/use_HO.csv',index=False)
 df_gen.to_csv('csv_data/gen_sol.csv',index=False)

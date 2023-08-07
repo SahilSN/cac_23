@@ -4,7 +4,7 @@ df_use=pd.read_csv('csv_data/use_HO.csv',low_memory=False)
 df_gen=pd.read_csv('csv_data/gen_sol.csv',low_memory=False)
 
 import matplotlib.pyplot as plt
-fig, axes = plt.subplots(nrows=4, ncols=1)
+fig, axes = plt.subplots(nrows=4, ncols=1,figsize=(2,8))
 
 def ahh(monthday,df_use,df_gen):
     df_use["monthdate"]=[str(i[5:10]) for i in df_use.time.tolist()]
@@ -81,10 +81,7 @@ for j in range(0, len(super_gen_list[0])):
 
 add_use_list = list(map(lambda x: x / len(super_use_list), add_use_list))
 add_gen_list = list(map(lambda x: x / len(super_gen_list), add_gen_list))
-print(add_use_list)
-print(add_gen_list)
-print(len(super_use_list))
-print(len(super_gen_list))
+
 
 
 
@@ -93,7 +90,7 @@ print(len(super_gen_list))
 hour_list=[]
 for i in range(len(add_gen_list)):
     hour_list.append(i)
-print(hour_list)
+
 import matplotlib.pyplot as plt
 x=hour_list
 y1=add_use_list
