@@ -66,27 +66,34 @@ df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "G
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
 ,"use_HO"])
 
-df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*10)
+df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*7)
+index=df_use.iloc[df_use['time']]=='2023-08-09 12:31:00'
+print(df_use.loc[index])
 for index,row in df_use.iterrows():
+
+
     if row.hour in [10,11,12,13,14,15,16,17,18]:
-        print('uh oh')
-        row.use_HO=row.use_HO*0.01
+
+        row.use_HO=0
 
     elif row.hour in [6,7,8,9]:
-        print('yuh')
+
         row.use_HO=row.use_HO*3
     elif row.hour in [19,20,21,22]:
-        print('double yuh')
-        row.use_HO = row.use_HO * 5
+
+        row.use_HO = row.use_HO * 6
     else:
-        row.use_HO = row.use_HO * 2
+        row.use_HO = row.use_HO * 1
 #df_use['use_HO'] = df_use['use_HO'].apply(lambda x: x*0.35)
 
 
 
+print(df_use.loc[index])
 
 df_use.to_csv('csv_data/use_HO.csv',index=False)
 df_gen.to_csv('csv_data/gen_sol.csv',index=False)
+
+
 
 '''
 df=pd.DataFrame()
