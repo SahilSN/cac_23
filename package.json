@@ -1,10 +1,11 @@
 {
-  "name": "forkify",
+  "name": "cac23",
   "version": "1.0.0",
   "description": "application",
   "default": "templates/index.html",
   "scripts": {
     "start": "parcel templates/index.html",
+    "build": "parcel build templates/index.html",
     "build": "parcel build templates/index.html"
   },
   "author": "Suhaas Vellanki",
