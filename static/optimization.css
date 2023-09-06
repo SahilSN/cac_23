@@ -1,0 +1,318 @@
+.home1-container {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  flex-direction: column;
+  background-color: rgb(230, 230, 230);
+}
+
+.home1-centered {
+  width: 100%;
+  height: 63px;
+  display: flex;
+  align-self: center;
+  box-sizing: initial;
+  align-items: center;
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  border-radius: 50px;
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--dl-color-success-300);
+}
+.home1-left {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: 38px;
+  flex-direction: row;
+  padding-bottom: 38px;
+}
+
+.home1-logo {
+  width: 105px;
+  margin-left: var(--dl-space-space-halfunit);
+}
+.home1-links {
+  display: flex;
+  align-items: center;
+  margin-left: 33px;
+  flex-direction: row;
+}
+.home1-right {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-top: var(--dl-space-space-oneandhalfunits);
+  flex-direction: row;
+  padding-bottom: var(--dl-space-space-oneandhalfunits);
+}
+.home1-get-started {
+  cursor: pointer;
+  display: flex;
+  transition: 0.3s;
+  align-items: center;
+  padding-top: var(--dl-space-space-unit);
+  padding-left: var(--dl-space-space-oneandhalfunits);
+  border-radius: 56px;
+  padding-right: var(--dl-space-space-oneandhalfunits);
+  flex-direction: column;
+  padding-bottom: var(--dl-space-space-unit);
+  background-color: #000000;
+}
+.home1-text03 {
+  color: rgb(255, 255, 255);
+  font-style: normal;
+  font-weight: 600;
+}
+.home1-burger-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.home1-mobile-menu-button {
+  width: 40px;
+  height: 40px;
+  display: none;
+}
+.home1-hero {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+  padding-right: 0px;
+  flex-direction: column;
+  background-color: var(--dl-color-gray-white);
+}
+.home1-image {
+  width: 100%;
+  height: 20vh;
+  z-index: 0;
+  position: absolute;
+  user-select: none;
+}
+.home1-text04 {
+  color: #000000;
+  height: 92px;
+  position: absolute;
+  font-size: 72px;
+  font-style: normal;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 700;
+  line-height: 80px;
+}
+.home1-container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home1-container2 {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  margin-top: 25vh;
+  background-color: white;
+}
+.home1-image1 {
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  align-self: flex-start;
+  margin-top: 0vh;
+  user-select: none;
+}
+.home1-text07 {
+  color: rgb(100, 100, 100);
+  width: 100%;
+  height: 50%;
+  align-self: center;
+  font-size: 50px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.home1-container3 {
+  width: 90%;
+  display: none;
+  flex-direction: row;
+  margin: 10px;
+  background-color: white;
+}
+.home1-text10 {
+  color: rgb(100, 100, 100);
+  width: 100%;
+  height: 50%;
+  align-self: center;
+  font-size: 50px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.home1-image2 {
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  align-self: flex-start;
+  margin-top: 0vh;
+  user-select: none;
+}
+.home1-container4 {
+  width: 90%;
+  display: none;
+  flex-direction: row;
+  margin: 10px;
+  background-color: white;
+}
+.home1-image3 {
+  width: 100%;
+  height: 50%;
+  z-index: 10;
+  align-self: flex-start;
+  margin-top: 0vh;
+  user-select: none;
+}
+.home1-text13 {
+  color: rgb(100, 100, 100);
+  width: 100%;
+  height: 50%;
+  align-self: center;
+  font-size: 50px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+}
+@media(max-width: 991px) {
+  .home1-centered {
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .home1-left {
+    margin-left: var(--dl-space-space-halfunit);
+  }
+  .home1-logo {
+    width: 64px;
+  }
+  .home1-links {
+    display: none;
+  }
+  .home1-get-started {
+    display: none;
+  }
+  .home1-mobile-menu-button {
+    display: flex;
+  }
+  .home1-hero {
+    padding-left: var(--dl-space-space-oneandhalfunits);
+    padding-right: var(--dl-space-space-oneandhalfunits);
+  }
+  .home1-image {
+    width: 100%;
+  }
+  .home1-image1 {
+    width: 100%;
+  }
+  .home1-image2 {
+    width: 100%;
+  }
+  .home1-image3 {
+    width: 100%;
+  }
+}
+@media(max-width: 767px) {
+  .home1-centered {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .home1-left {
+    margin-left: var(--dl-space-space-unit);
+  }
+  .home1-right {
+    margin-right: var(--dl-space-space-unit);
+  }
+  .home1-get-started {
+    display: none;
+  }
+  .home1-hero {
+    height: 620px;
+    position: relative;
+    padding-bottom: 180px;
+    background-color: var(--dl-color-gray-white);
+  }
+  .home1-image {
+    width: 100%;
+  }
+  .home1-text04 {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .home1-image1 {
+    width: 100%;
+  }
+  .home1-text07 {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .home1-text10 {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .home1-image2 {
+    width: 100%;
+  }
+  .home1-image3 {
+    width: 100%;
+  }
+  .home1-text13 {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+  }
+}
+@media(max-width: 479px) {
+  .home1-hero {
+    padding-bottom: 160px;
+  }
+}
+
+/* Define the CSS animation for the fade-in effect */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply the animation to the elements with a class */
+.fade-in {
+  display: flex;
+  animation: fade-in 0.5s ease forwards;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(20px); /* Initially translated down */
+}
+.filler{
+  height: 1000px;
+}
