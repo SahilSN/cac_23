@@ -1,11 +1,8 @@
-from setuptools import setup,find_packages
+from setuptools import setup
 
 setup(
-    name='cac_23',
-    version='1.0',
-    long_description=__doc__,
-    packages=['build'],
+    name='cac23',
+    packages=['cac_code'],
     include_package_data=True,
-    zip_safe=False,
-    install_requires=['Flask']
+    install_requires=['flask'],
 )
