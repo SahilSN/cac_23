@@ -9,10 +9,10 @@ class House:
     def __init__(self,battery,datetime=dt.now()):
         self.battery=battery
         self.datetime=datetime.replace(microsecond=0).replace(second=0)
-        self.use_df=pd.read_csv('csv_data/use_HO.csv')
-        self.gen_df=pd.read_csv('csv_data/gen_sol.csv')
-        self.use_model=lgb.Booster(model_file='ml_models/use_HO_model.txt')
-        self.gen_model=lgb.Booster(model_file='ml_models/gen_sol_model.txt')
+        self.use_df=pd.read_csv('cac_code/csv_data/use_HO.csv')
+        self.gen_df=pd.read_csv('cac_code/csv_data/gen_sol.csv')
+        self.use_model=lgb.Booster(model_file='cac_code/ml_models/use_HO_model.txt')
+        self.gen_model=lgb.Booster(model_file='cac_code/ml_models/gen_sol_model.txt')
     #def battery(self):
        # return self.battery
     def date_time(self):
@@ -51,6 +51,4 @@ class House:
 
 
 house=House(0)
-print(house.pred_gen('2023-01-01 05:00:00'))
-print(house.pred_cons('2023-01-01 05:00:00'))
 
