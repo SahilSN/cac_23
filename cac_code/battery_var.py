@@ -10,7 +10,33 @@ use_df=pd.read_csv('cac_code/csv_data/use_HO.csv')
 gen_df=pd.read_csv('cac_code/csv_data/gen_sol.csv')
 battery_df=pd.read_csv('cac_code/csv_data/battery_data.csv')
 
-today='2023-07-14 22:12:00'
+start='2023-08-20 22:21:00'
+
+datetimes=use_df.time.tolist()
+battery_list=[]
+waste_list=[]
+battery = 0.029383361
+waste = 0
+
+for datetime in datetimes:
+    
+    battery += gen_df.loc[gen_df['time'] == datetime, 'gen_Sol'].iloc[0]
+    battery -= use_df.loc[use_df['time'] == datetime, 'use_HO'].iloc[0]
+    if battery<=0:
+        waste+=abs(battery)
+
+        battery=0
+    if datetime == start:
+        print('done')
+        break
+    waste_list.append(waste)
+    battery_list.append(battery)
+
+battery_df['battery'] = battery_list
+battery_df['waste'] = waste_list
+battery_df.to_csv('cac_code/csv_data/battery_data.csv',index=False)
+
+""" today='2023-07-14 22:12:00'
 
 battery=0
 waste=0
@@ -44,4 +70,4 @@ while x >= use_df.loc[use_df['time']==today].index.values[0]:
     x+=1
 
 
-battery_df.to_csv('csv_data/battery_data.csv',index=False)
+battery_df.to_csv('csv_data/battery_data.csv',index=False) """
