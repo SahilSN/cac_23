@@ -18,7 +18,10 @@ waste_list=[]
 battery = 0.029383361
 waste = 0
 
-for datetime in datetimes:
+datetimes_before=datetimes[:datetimes.index(start)]
+datetimes_after=datetimes[datetimes.index(start):]
+
+for datetime in datetimes_before:
     
     battery += gen_df.loc[gen_df['time'] == datetime, 'gen_Sol'].iloc[0]
     battery -= use_df.loc[use_df['time'] == datetime, 'use_HO'].iloc[0]
@@ -26,11 +29,20 @@ for datetime in datetimes:
         waste+=abs(battery)
 
         battery=0
-    if datetime == start:
-        print('done')
-        break
     waste_list.append(waste)
     battery_list.append(battery)
+
+for datetime in datetimes_after:
+    
+    battery += gen_df.loc[gen_df['time'] == datetime, 'gen_Sol'].iloc[0]
+    battery -= house.pred_cons(datetime)
+    if battery<=0:
+        waste+=abs(battery)
+
+        battery=0
+    waste_list.append(waste)
+    battery_list.append(battery)
+
 
 battery_df['battery'] = battery_list
 battery_df['waste'] = waste_list
