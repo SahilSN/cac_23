@@ -1,8 +1,9 @@
+lightgbm
 pandas
-Flask
 numpy
 matplotlib
 seaborn
-tensorflow
-keras
-gunicorn
+scikit-learn
+os
+flask
+
