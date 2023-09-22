@@ -235,117 +235,14 @@
 
   <script src="../static/js/darkMode.js"></script>
 
+  <script src="../static/js/loadCharts.js"></script>
+
+  <!-- For Loading Charts -->
   <script type="text/javascript">
-
-    // // removes the outer html tags of a string -- EX: "<div> <p>text</p> </div>"" --> "<p>text</p>"
-    // function removeOuterTags(string) {
-    //   var frontGt = string.indexOf('>');
-    //   reversedString = string.split("").reverse().join("");
-    //   var backLt = string.length - (reversedString.indexOf('<') + 1);
-
-    //   var newString = string.substring(frontGt + 1, backLt).trim();
-    //   return newString;
-    // }
-
-    //   function loadChart(graph) {
-    //     try {
-    //       console.log("loading!!!")
-
-    //       var graphDec = he.decode(graph);
-
-    //       // removes the outer div tags
-    //       var graphDecTrim = removeOuterTags(graphDec);
-
-    //       console.log(graphDecTrim);
-    //       // isolates the graph div using regex
-    //       var graphDiv = graphDecTrim.match(/<div(.*)>(.*)<\/div>/g)[0];
-
-    //       // isolates the graph script using regex, then removes the script tags
-    //       var graphScript = graphDecTrim.match(/<script(.*)>(.*)<\/script>/g)[0];
-    //       var graphScript = removeOuterTags(graphScript);
-
-    //       return { "div": graphDiv, "script": graphScript };
-    //     }
-    //     catch (e) {
-    //       return { "message": "error" };
-    //     }
-    //   }
-    //   window.addEventListener('load', function () {
-    //     var graph = ('{{ graph }}');
-    //     console.log("1");
-
-    //     data = loadChart(graph);
-    //     console.log("2");
-    //     var graphDiv = data["div"];
-    //     console.log("3");
-    //     var graphScript = data["script"];
-    //     console.log("4");
-    //     console.log(graphDiv);
-    //     console.log("5");
-    //     console.log(graphScript);
-    //     console.log("6");
-
-    //     // attaches the separate div and script to predefined html elements -- can also be changed to create new html elements instead
-    //     document.getElementById("graph").innerHTML = graphDiv;
-    //     console.log("7");
-    //     const script = document.createElement('script');
-    //     console.log("8");
-    //     script.type = "text/javascript";
-    //     console.log("9");
-    //     script.text = graphScript;
-    //     console.log("10");
-    //     document.body.appendChild(script);
-    //     console.log("11");
-    //   });
-  </script>
-
-  <script type="text/javascript">
-    // removes the outer html tags of a string -- EX: "<div> <p>text</p> </div>"" --> "<p>text</p>"
-    function removeOuterTags(string) {
-      var frontGt = string.indexOf('>');
-      reversedString = string.split("").reverse().join("");
-      var backLt = string.length - (reversedString.indexOf('<') + 1);
-
-      var newString = string.substring(frontGt + 1, backLt).trim();
-      return newString;
-    }
-
-    function processGraph(graph) {
-      var graphDec = he.decode(graph);
-      console.log(graphDec);
-      // removes the outer div tags
-      var graphDecTrim = removeOuterTags(graphDec);
-
-      // isolates the graph div using regex
-      var graphDiv = graphDecTrim.match(/<div(.*)>(.*)<\/div>/g)[0];
-
-      // isolates the graph script using regex, then removes the script tags
-      var graphScript = graphDecTrim.match(/<script(.*)>(.*)<\/script>/g)[0];
-      var graphScript = removeOuterTags(graphScript);
-
-      return {"div": graphDiv, "script": graphScript};
-    }
-
     window.addEventListener('load', function () {
-      var counter = 0;
-
       var graph = ('{{ graph }}');
-      console.log(counter); //0
-      counter+=1;
-
-      var pGraph = processGraph(graph);
-      var graphDiv = pGraph["div"];
-      var graphScript = pGraph["script"];
-      console.log(graphDiv);
-      console.log(graphScript);
-
-      // attaches the separate div and script to predefined html elements -- can also be changed to create new html elements instead
-      document.getElementById("graph").innerHTML = graphDiv;
-      const script = document.createElement('script');
-      script.type = "text/javascript";
-      script.text = graphScript;
-      document.body.appendChild(script);
-    });
+      createGraph(graph, "graph");
+    })
   </script>
 </body>
 
