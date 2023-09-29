@@ -202,6 +202,17 @@
               <h1 class="home-text22">+15%</h1>
             </div>
           </div>
+          
+          <script src="../static/js/loadCharts.js"></script>
+
+          <!-- For Loading Charts -->
+          <script type="text/javascript">
+            window.addEventListener('load', function () {
+              var graph = ('{{ graph }}');
+              createGraph(graph, "graph");
+            })
+          </script>
+
           <div class="home-container02">
             <div class="home-container03">
               <div class="home-container04">
