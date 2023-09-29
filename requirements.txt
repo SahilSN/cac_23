@@ -2,7 +2,8 @@ pandas
 Flask
 numpy
 matplotlib
-seaborn
+seaborn #may not be required
 tensorflow
 keras
 gunicorn
+plotly
