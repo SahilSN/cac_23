@@ -202,7 +202,7 @@
               <h1 class="home-text22">+15%</h1>
             </div>
           </div>
-          
+
           <script src="../static/js/loadCharts.js"></script>
 
           <!-- For Loading Charts -->
@@ -212,7 +212,7 @@
               createGraph(graph, "graph");
             })
           </script>
-
+          <div id="graph"></div>
           <div class="home-container02">
             <div class="home-container03">
               <div class="home-container04">
@@ -240,21 +240,10 @@
       </section>
     </div>
   </div>
-  <div id="graph"></div>
   <!-- <button id="dark-mode-toggle" class="bottom-right-button"
     style="background-color: rgba(100, 100, 100, 0.5); color:black;">Dark Mode</button> -->
 
   <script src="../static/js/darkMode.js"></script>
-
-  <script src="../static/js/loadCharts.js"></script>
-
-  <!-- For Loading Charts -->
-  <script type="text/javascript">
-    window.addEventListener('load', function () {
-      var graph = ('{{ graph }}');
-      createGraph(graph, "graph");
-    })
-  </script>
 </body>
 
 </html>
