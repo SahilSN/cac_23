@@ -37,6 +37,7 @@ def generate_line(df, x_col, y_col_s, y_col_e, title):
 def generate_pie(df,title):
     fig = px.pie(df, values=df.columns.values[1], names=df.columns.values[0],title=title)
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
+    fig.show()
     return div
 
 

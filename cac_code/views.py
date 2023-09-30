@@ -3,7 +3,7 @@ import pandas as pd
 import sys
 
 
-from cac_code.charts import line
+from cac_code.charts import line,pie
 
 from datetime import datetime, timedelta
 
@@ -14,15 +14,10 @@ print('BAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh')
 @app.route("/dashboard",methods=['GET','POST'])
 def index():
 
-    #d={
-    #'appliance':['dishwasher','kitchen', 'toilet'],
-    #'values':[1,3,4]
-    #}
-    #df=pd.DataFrame(data=d)
-    #pie=generate_pie(df,'test')
+    
 
     print('indexxx')
-    return render_template("index.html", graph = line)#,pie=pie)
+    return render_template("index.html", graph = line,pie=pie)
 
 @app.route("/optimization",methods=['GET','POST'])
 def optimization():

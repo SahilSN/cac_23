@@ -75,4 +75,10 @@ print(line_df)
 line = generate_line(line_df, 0, 1, None, "Energy Consumption, Generation, and Battery 12 Hours Before and After")
 
 #pie chart (distribution of consumption by appliance last twelve hours)
+d={
+    'appliance':['dishwasher','kitchen', 'toilet'],
+    'values':[1,3,4]
+    }
+pie_df=pd.DataFrame(data=d)
+pie = generate_pie(pie_df, "pie")
 
