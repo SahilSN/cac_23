@@ -4,7 +4,7 @@ Tutorial Notebook using HomeC.csv
 '''
 import pandas as pd
 
-df = pd.read_csv("csv_data/HomeC.csv", low_memory=False)
+df = pd.read_csv("cac_code/csv_data/HomeC.csv", low_memory=False)
 pd.set_option('display.max_columns', None)
 
 #removing [kW] from the columns
@@ -56,7 +56,7 @@ df['use_HO'] = df['use']
 df['gen_Sol'] = df['gen']
 df.drop(['use','House overall','gen','Solar'], axis=1, inplace=True)
 #print(df.head(3))
-df_use=df.drop(columns=["Dishwasher","Wine cellar","Barn","Well","temperature","humidity","visibility","pressure"
+df_use=df.drop(columns=["Dishwasher","Barn","Well","temperature","humidity","visibility","pressure"
     ,"windSpeed","cloudCover","windBearing","precipIntensity","dewPoint","precipProbability","Furnace","Kitchen","year"
     ,"weekofyear","minute","timing","gen_Sol"])
 df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "Garage door", "Barn", "Well",
@@ -64,8 +64,7 @@ df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "G
 ,"use_HO"])
 
 df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*7)
-index=df_use.iloc[df_use['time']]=='2023-08-09 12:31:00'
-print(df_use.loc[index])
+
 for index,row in df_use.iterrows():
 
 
@@ -85,10 +84,8 @@ for index,row in df_use.iterrows():
 
 
 
-print(df_use.loc[index])
-
-df_use.to_csv('csv_data/use_HO.csv',index=False)
-df_gen.to_csv('csv_data/gen_sol.csv',index=False)
+df_use.to_csv('cac_code/csv_data/use_HO.csv',index=False)
+df_gen.to_csv('cac_code/csv_data/gen_sol.csv',index=False)
 
 
 

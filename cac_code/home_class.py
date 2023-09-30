@@ -1,4 +1,5 @@
 from datetime import datetime as dt
+from datetime import timedelta
 import pandas as pd
 import lightgbm as lgb
 #from battery_var import battery
@@ -47,8 +48,22 @@ class House:
     def update_battery(self):
         #print(self.datetime)
         now=self.datetime
+    def last_12(self,exception=False): #actual
+        before_12_hr = (self.datetime - timedelta(hours=12)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        now = self.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        mask_before = (self.gen_df['time'] <= now) & (self.gen_df['time'] >= before_12_hr)
+        if exception:
+            return mask_before
+        return self.gen_df.loc[mask_before].time.values.tolist()
+        
+    def next_12(self,exception=False): #predicted
+        now = self.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        next_12_hr = (self.datetime + timedelta(hours=12)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        mask_after = (self.gen_df['time'] >= now) & (self.gen_df['time'] <= next_12_hr)
+        if exception:
+            return mask_after
+        return self.gen_df.loc[mask_after].time.values.tolist()
         #self.battery+=self.act_gen(str(now))
 
 
 house=House(0)
-

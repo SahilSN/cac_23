@@ -1,6 +1,6 @@
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = '-1'
-from cac_code.py_vault.csv_to_dataset import df_gen,df_use
+from home_class import house
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -12,7 +12,7 @@ from sklearn.metrics import mean_squared_error
 def train_dataset(df):
     # load the dataset
 
-    if len(df.axes[1])==11:
+    if len(df.axes[1])==12:
         df_name='use_HO'
     elif len(df.axes[1])==15:
         df_name='gen_sol'
@@ -21,7 +21,7 @@ def train_dataset(df):
 
     print(df_name)
 
-    df = pd.read_csv('csv_data/'+df_name+'.csv',low_memory=False)
+    df = pd.read_csv('cac_code/csv_data/'+df_name+'.csv',low_memory=False)
 
 
     df=df.drop(columns=['time'])
@@ -121,15 +121,16 @@ def train_dataset(df):
 
     #lgb.save(model,'ml_models/'+df_name+'_model.txt')
     #model.booster_.save_model('ml_models/'+df_name+'_model.txt')
-    model.save_model('ml_models/'+df_name+'_model.txt')
+    model.save_model('cac_code/ml_models/'+df_name+'_model.txt')
     #model.save_model('ml_models/'+df_name+'_model.txt')
 
 
 
 
 
-train_dataset(df_gen)
-train_dataset(df_use)
+train_dataset(house.gen_df)
+print('gen train done')
+train_dataset(house.use_df)
 print('use_HO train done')
 
 
