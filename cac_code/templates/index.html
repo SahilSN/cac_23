@@ -206,6 +206,8 @@
           <script src="../static/js/loadCharts.js"></script>
 
           <!-- For Loading Charts -->
+
+          <!-- Line graph even listener + div -->
           <script type="text/javascript">
             window.addEventListener('load', function () {
               var graph = ('{{ graph }}');
@@ -213,11 +215,22 @@
             })
           </script>
           <div id="graph"></div>
+
+          <!-- Graph outline -->
           <div class="home-container02">
+
+          <!-- Pie chart event listener + div -->
+
             <div class="home-container03">
               <div class="home-container04">
                 <div class="home-container05" id="line">
-                  <img alt="pastedImage" src="../static/images/graph1-6000w.png" loading="lazy" class="home-image" />
+                  <script type="text/javascript">
+                    window.addEventListener('load', function () {
+                      var graph = ('{{ pie }}');
+                      createGraph(graph, "pie");
+                    })
+                  </script>
+                  <div id="pie" class="home-image"></div>
                   <img alt="pastedImage" src="../static/images/graph1-6000w.png" loading="lazy" class="home-image1" />
                 </div>
               </div>
