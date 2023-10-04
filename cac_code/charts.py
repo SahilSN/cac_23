@@ -2,10 +2,10 @@ import plotly
 import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
-from cac_code import app
-from cac_code.charts_class import generate_line,generate_pie
+from app import app
+from charts_class import generate_line,generate_pie
 from datetime import datetime, timedelta
-from cac_code.home_class import house
+from home_class import house
 
 import warnings
 warnings.filterwarnings("ignore")

@@ -3,11 +3,11 @@ import pandas as pd
 import sys
 
 
-from cac_code.charts import line,pie
+from charts import line,pie
 
 from datetime import datetime, timedelta
 
-from cac_code import app
+from app import app
 
 print('BAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh')
 @app.route("/",methods=['GET','POST'])

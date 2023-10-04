@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+```# syntax=docker/dockerfile:1
 
 FROM python:3.8-slim-buster
 
@@ -9,4 +9,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+ENV FLASK_APP=cac_code/app.py
+
+CMD ["python3", "-m", "flask","--app","cac_code/app.py" "run", "--host=8.0.8.0"]```
