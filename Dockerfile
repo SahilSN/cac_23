@@ -11,4 +11,4 @@ COPY . .
 
 ENV FLASK_APP=cac_code/app.py
 
-CMD ["flask","--app","cac_code/app.py" "run", "--host=8.0.8.0"]
+CMD ["flask","--app","cac_code/app.py", "run", "--host=8.0.8.0"]
