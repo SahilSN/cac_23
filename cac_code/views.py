@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import sys
 
-
+from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
 from charts import line,pie
 
 from datetime import datetime, timedelta
@@ -17,7 +17,11 @@ def index():
     
 
     print('indexxx')
-    return render_template("index.html", graph = line,pie=pie)
+    return render_template("index.html", 
+                           graph = line, pie=pie, tg=total_generated, tc=total_consumed,
+                           bl=battery_left, ge=generation_efficiency, ha=hour_avg
+                           
+                           )
 
 @app.route("/optimization",methods=['GET','POST'])
 def optimization():
