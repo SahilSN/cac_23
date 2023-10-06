@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
-df_use=pd.read_csv('csv_data/use_HO.csv', low_memory=False)
-df_gen=pd.read_csv('csv_data/gen_sol.csv', low_memory=False)
+df_use=pd.read_csv('cac_code/csv_data/use_HO.csv', low_memory=False)
+df_gen=pd.read_csv('cac_code/csv_data/gen_sol.csv', low_memory=False)
 
 import matplotlib.pyplot as plt
 fig, axes = plt.subplots(nrows=4, ncols=1,figsize=(2,8))

@@ -74,13 +74,24 @@ for index,row in df_use.iterrows():
 
     elif row.hour in [6,7,8,9]:
 
-        row.use_HO=row.use_HO*3
+        row.use_HO=row.use_HO*2
     elif row.hour in [19,20,21,22]:
 
-        row.use_HO = row.use_HO * 6
+        row.use_HO = row.use_HO * 3
     else:
         row.use_HO = row.use_HO * 1
+    if row.month ==9:
+        row.use_HO=row.use_HO *0.95
+    if row.month ==10:
+        row.use_HO=row.use_HO *0.9
+    if row.month ==11:
+        row.use_HO=row.use_HO *0.8
+    if row.month ==12:
+        row.use_HO=row.use_HO *0.6
+
+
 #df_use['use_HO'] = df_use['use_HO'].apply(lambda x: x*0.35)
+
 
 
 

@@ -9,9 +9,12 @@ import random
 use_df=pd.read_csv('cac_code/csv_data/use_HO.csv')
 gen_df=pd.read_csv('cac_code/csv_data/gen_sol.csv')
 battery_df=pd.read_csv('cac_code/csv_data/battery_data.csv')
-
+first='2023-08-20 21:21:00'
+last='2023-08-20 23:21:00'
 start='2023-08-20 22:21:00'
 
+battery_df.waste=0.0
+battery_df.battery=0.0
 datetimes=use_df.time.tolist()
 battery_list=[]
 waste_list=[]
@@ -20,7 +23,8 @@ waste = 0
 
 datetimes_before=datetimes[:datetimes.index(start)]
 datetimes_after=datetimes[datetimes.index(start):]
-
+#print(datetimes_before)
+#print(datetimes_after)
 for datetime in datetimes_before:
     
     battery += gen_df.loc[gen_df['time'] == datetime, 'gen_Sol'].iloc[0]
@@ -35,7 +39,7 @@ for datetime in datetimes_before:
 for datetime in datetimes_after:
     
     battery += gen_df.loc[gen_df['time'] == datetime, 'gen_Sol'].iloc[0]
-    battery -= house.pred_cons(datetime)
+    battery -= house.pred_cons(datetime)[0]
     if battery<=0:
         waste+=abs(battery)
 
@@ -46,4 +50,7 @@ for datetime in datetimes_after:
 
 battery_df['battery'] = battery_list
 battery_df['waste'] = waste_list
+#print(battery_list)
+#print('\n\n\n')
+#print(waste_list)
 battery_df.to_csv('cac_code/csv_data/battery_data.csv',index=False)
