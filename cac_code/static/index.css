@@ -566,3 +566,8 @@
 #graph{
   width: 100%;
 }
+
+.home-links span{
+  margin-left: 10px;
+  margin-right: 10px;
+}
