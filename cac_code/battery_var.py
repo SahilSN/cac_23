@@ -6,7 +6,7 @@ import random
 #df['time']=df_use['time']
 #df.to_csv('../csv_data/battery_data.csv',index=False)
 
-use_df=pd.read_csv('cac_code/csv_data/use_HO.csv')
+use_df=pd.read_csv('csv_data/use_HO.csv')
 gen_df=pd.read_csv('cac_code/csv_data/gen_sol.csv')
 battery_df=pd.read_csv('cac_code/csv_data/battery_data.csv')
 first='2023-08-20 21:21:00'

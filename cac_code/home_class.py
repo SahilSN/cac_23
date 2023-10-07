@@ -48,10 +48,17 @@ class House:
     def update_battery(self):
         #print(self.datetime)
         now=self.datetime
-    def last_12(self,exception=False): #actual
-        before_12_hr = (self.datetime - timedelta(hours=12)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
-        now = self.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+    def last_12(self,datetime,exception=False): #actual
+        before_12_hr = (datetime - timedelta(hours=12)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        now = datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
         mask_before = (self.gen_df['time'] <= now) & (self.gen_df['time'] >= before_12_hr)
+        if exception:
+            return mask_before
+        return self.gen_df.loc[mask_before].time.values.tolist()
+    def last_24(self,datetime,exception=False): #actual
+        before_24_hr = (datetime - timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        now = datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        mask_before = (self.gen_df['time'] <= now) & (self.gen_df['time'] >= before_24_hr)
         if exception:
             return mask_before
         return self.gen_df.loc[mask_before].time.values.tolist()
@@ -67,3 +74,4 @@ class House:
 
 
 house=House(0)
+#print(house.last_24(dt.now()))
