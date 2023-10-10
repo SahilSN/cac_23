@@ -49,7 +49,7 @@ df_after['Energy Generation']=df_after['Energy Generation'].astype(float)
 df_after['Energy Consumption']=df_after['Energy Consumption'].astype(float)
 df_after = df_after.assign(battery = None)
 line_df=pd.concat([main_line_filter_df_before, df_after], axis=0)
-
+line_df=line_df.drop(columns=["battery"])
 ### Generates line graph with the parameters
 main_line = generate_line(line_df, 0, 1, None, "Energy Consumption, Generation, and Battery 12 Hours Before and After")
 
@@ -100,14 +100,14 @@ for i in range(6):
   
   counter.append(last_24_list[0])
   cons_list=[]
-  waste_list=[]
+  
   for datetime in last_24_list:
     #print(f"{datetime}  -  {df_use.loc[df_use['time']==datetime,'use_HO'].values[0]}")
     cons_list.append(df_use.loc[df_use['time']==datetime,'use_HO'].values[0])
-    waste_list.append(df_battery.loc[df_battery['time']==datetime,'waste'].values[0])
+    #waste_list.append(df_battery.loc[df_battery['time']==datetime,'waste'].values[0])
     #print('\n\n\ncons_list:\n',cons_list,'\n\n')
   total_consumption.append(sum(cons_list))
-  total_waste.append(sum(waste_list))
+  total_waste.append(df_battery.loc[df_battery['time']==dt_holder,'waste'].values[0])
   #print('\n\n\nsum of cons_list:\n',sum(cons_list),'\n\n')
   #print('\n\n\nsum of waste_list:\n',sum(waste_list),'\n\n')
 
