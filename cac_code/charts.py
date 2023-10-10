@@ -17,14 +17,16 @@ df_gen=house.gen_df
 
 
 #line-chart (consumption, generation, battery 12 hrs bfr and 12 after)
-df_battery = pd.read_csv("cac_code/csv_data/battery_data.csv")
+df_battery = pd.read_csv("cac_code/csv_data/battery_data.csv",)
 
+#df_battery["battery"]=df_battery["battery"].astype(float)
 # Creates Main Line Graph
 main_line_df = df_gen[["time", "gen_Sol"]]
 main_line_df=main_line_df.rename(columns={"time": "Time", "gen_Sol": "Energy Generation"})
 main_line_df["Energy Consumption"] = df_use["use_HO"]
-main_line_df["Battery"] = df_battery["battery"].astype("float64")
-
+main_line_df["battery"] = df_battery["battery"]
+#print(main_line_df.info())
+#print(main_line_df)
 ### Filters results to past 12 hours
 #(df_gen['time'] >= before_12_hr) & (df_gen['time'] <= now)
 main_line_filter_df_before = main_line_df.loc[house.last_12(now,True)]
@@ -45,7 +47,7 @@ df_after=pd.DataFrame({
 df_after['Time']=df_after['Time'].astype(str)
 df_after['Energy Generation']=df_after['Energy Generation'].astype(float)
 df_after['Energy Consumption']=df_after['Energy Consumption'].astype(float)
-df_after = df_after.assign(Battery = None)
+df_after = df_after.assign(battery = None)
 line_df=pd.concat([main_line_filter_df_before, df_after], axis=0)
 
 ### Generates line graph with the parameters
@@ -56,6 +58,7 @@ appliance_list=['Home Office','Fridge','Wine Cellar', 'Garage Door','Microwave',
 app_df=house.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
 app_df = app_df.loc[house.last_12(now,True)]
 app_df=app_df.drop(columns=['time'])
+
 value_list=[]
 
 
@@ -85,25 +88,46 @@ for i in range(len(value_list)):
   if diff >= 15:
     pie_statement_list.append(f'{appliance_list[i]} uses {diff}% more energy than average in the last 12 hours. Make sure to turn off any lights or running appliances to limit your energy usage.')
 
+
+#third optimization chart
 counter=[now.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00']
 total_consumption=[]
-total_generation=[]
+total_waste=[]
 for i in range(6):
   dt_holder=dt.strptime(counter[-1],"%Y-%m-%d %H:%M:%S")
   #print(type(dt_holder))
   last_24_list=house.last_24(dt_holder)
   
-  counter.append(last_24_list[-1])
+  counter.append(last_24_list[0])
   cons_list=[]
+  waste_list=[]
   for datetime in last_24_list:
-    cons_list.append(df_use.loc[df_use['time']==datetime,'use_HO'])
+    #print(f"{datetime}  -  {df_use.loc[df_use['time']==datetime,'use_HO'].values[0]}")
+    cons_list.append(df_use.loc[df_use['time']==datetime,'use_HO'].values[0])
+    waste_list.append(df_battery.loc[df_battery['time']==datetime,'waste'].values[0])
+    #print('\n\n\ncons_list:\n',cons_list,'\n\n')
   total_consumption.append(sum(cons_list))
-#print(total_consumption)
+  total_waste.append(sum(waste_list))
+  #print('\n\n\nsum of cons_list:\n',sum(cons_list),'\n\n')
+  #print('\n\n\nsum of waste_list:\n',sum(waste_list),'\n\n')
+
+
+
+
+
 time_periods=[]
 for i in range(6):
-  time_periods.append(f'{counter[i]} - {counter[i+1]}')
+  time_periods.append(f'{counter[i][5:10]} - {counter[i+1][5:10]}')
+time_periods.reverse()
+total_consumption.reverse()  
 df_24=pd.DataFrame({
-  'period':time_periods,
-  'total':total_consumption
+
+  'Time Period':time_periods,
+  'Total Consumption':total_consumption,
+  'Total Waste':total_waste
   })
+#df_24["period"]=df_24["period"].astype('|S')
+#print(df_24.info())
+#print(df_24.head())
+
 optimization_line = generate_line(df_24, 0, 1, None, "Energy Consumption in 24 Hour increments")

@@ -1,12 +1,5 @@
-datetime='2023-08-20 22:21:00'
-from home_class import house
-df=house.use_HO()
-i=0
-for row in df.iterrows():
-    row=row[1].tolist()
-
-    if row[0]==datetime:
-        print(i)
-        break
-    i+=1
-
+import pandas as pd
+df=pd.read_csv('cac_code/csv_data/battery_data.csv')
+df['Battery'] = [round(i,2) for i in df['Battery'].values.tolist()]
+df['waste'] = [round(i,2) for i in df['waste'].values.tolist()]
+df.to_csv('cac_code/csv_data/battery_data.csv',index=None)

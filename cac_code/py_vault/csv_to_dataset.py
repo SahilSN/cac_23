@@ -63,7 +63,7 @@ df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "G
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
 ,"use_HO"])
 
-df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*7)
+df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*12)
 
 for index,row in df_use.iterrows():
 
