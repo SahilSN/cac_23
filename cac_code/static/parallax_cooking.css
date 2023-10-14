@@ -101,7 +101,7 @@ section img#panels{
     font-size: 1.5em;
     display: inline-block;
     z-index: 9;
-    transform: translate(250px, 250px);
+    transform: translate(10vw, 25vh);
 }
 
 .sec{

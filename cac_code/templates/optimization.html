@@ -69,80 +69,92 @@
             </div>
           </div>
         </nav>
-        <section class="home1-hero">
-          <img
-            alt="pastedImage"
-            src="../static/images/graph1-6000w.png"
-            loading="lazy"
-            class="home1-image"
-          />
-          <h1 class="home1-text04">
-            <span>Optimization</span>
-            <br />
-          </h1>
-        </section>
-        <script src="../static/js/loadCharts.js"></script>
-        <div class="home1-container1">
-          <div class="home1-container2">
-            <script type="text/javascript">
-              window.addEventListener('load', function () {
-                var graph = ('{{ pie }}');
-                createGraph(graph, "pie");
-              })
-            </script>
-            <div id="pie" class="home1-image1"></div>
-            <!-- <img
-              alt="pastedImage"
-              src="../static/images/graph1-6000w.png"
-              loading="lazy"
-              class="home1-image2"
-            /> -->
-            <h1 class="home1-text07">
-              <span> {{pie_list[0]}}</span>
-              <br />
-            </h1>
-          </div>
-          <div class="home1-container3" id="container3">
-            <script type="text/javascript">
-              window.addEventListener('load', function () {
-                var graph = ('{{ line }}');
-                createGraph(graph, "graph1");
-              })
-            </script>
-            <div id="graph1" class="home1-image2"></div>
-            <!-- <img
-              alt="pastedImage"
-              src="../static/images/graph1-6000w.png"
-              loading="lazy"
-              class="home1-image2"
-            /> -->
-            <h1 class="home1-text10">
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </span>
-              <br />
-            </h1>
-          </div>
-          <div class="home1-container4" id="container4">
+          <!-- <section class="home1-hero">
             <img
               alt="pastedImage"
-              src="../static/images/graph1-6000w.png"
+              src="../static/images/parallax_solar_panels.png"
               loading="lazy"
-              class="home1-image3"
-            />
-            <h1 class="home1-text13">
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </span>
+              class="home1-image"
+            /> 
+            <img class="image" src="../static/images/parallax_solar_panels.jpeg">
+            <h1 class="home1-text04">
+              <span>Optimization</span>
               <br />
             </h1>
+            <img class="solarpanelbottom" src="../static/images/solar_panel_bottom.png">
+          </section> -->
+
+          <section id="a">
+            <img src="../static/images/parallax_solar_panels.jpeg" id="background">
+            <h1 class="home1-text04" id="txt">Optimization</h1>
+            <a href="#" id="btn" onclick="transition()">Explore</a>
+            <!-- <img src="../static/images/solar_panel_bottom.png" id="panels"> -->
+          </section>
+          <div class="content" id="content">
+            <script src="../static/js/loadCharts.js"></script>
+            <div class="home1-container1">
+              <div class="home1-container2">
+                <script type="text/javascript">
+                  window.addEventListener('load', function () {
+                    var graph = ('{{ pie }}');
+                    createGraph(graph, "pie");
+                  })
+                </script>
+                <div id="pie" class="home1-image1"></div>
+                <!-- <img
+                  alt="pastedImage"
+                  src="../static/images/graph1-6000w.png"
+                  loading="lazy"
+                  class="home1-image2"
+                /> -->
+                <h1 class="home1-text07">
+                  <span> {{pie_list[0]}}</span>
+                  <br />
+                </h1>
+              </div>
+              <div class="home1-container3" id="container3">
+                <script type="text/javascript">
+                  window.addEventListener('load', function () {
+                    var graph = ('{{ line }}');
+                    createGraph(graph, "graph1");
+                  })
+                </script>
+                <div id="graph1" class="home1-image2"></div>
+                <!-- <img
+                  alt="pastedImage"
+                  src="../static/images/graph1-6000w.png"
+                  loading="lazy"
+                  class="home1-image2"
+                /> -->
+                <h1 class="home1-text10">
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </span>
+                  <br />
+                </h1>
+              </div>
+              <div class="home1-container4" id="container4">
+                <img
+                  alt="pastedImage"
+                  src="../static/images/graph1-6000w.png"
+                  loading="lazy"
+                  class="home1-image3"
+                />
+                <h1 class="home1-text13">
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </span>
+                  <br />
+                </h1>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="e filler" id="filler"></div>
+        <!-- <div class="e filler" id="filler"></div> -->
       </div>
     </div>
-    <script src="../static/js/scrollAppear.js"></script>
+    <!-- <script src="../static/js/scrollAppear.js"></script> -->
+    <script src="../static/js/contentTransition.js"></script>
   </body>
 </html>
