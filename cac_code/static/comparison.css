@@ -1,0 +1,99 @@
+.comparison-container {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    flex-direction: column;
+    background-color: rgb(230, 230, 230);
+}
+
+.comparison-centered {
+    width: 100%;
+    height: 63px;
+    display: flex;
+    align-self: center;
+    box-sizing: initial;
+    align-items: center;
+    padding-left: var(--dl-space-space-oneandhalfunits);
+    border-radius: 50px;
+    padding-right: var(--dl-space-space-oneandhalfunits);
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--dl-color-success-300);
+    z-index: 1;
+}
+.comparison-left {
+    height: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding-top: 38px;
+    flex-direction: row;
+    padding-bottom: 38px;
+}
+  
+.comparison-logo {
+    width: 105px;
+    margin-left: var(--dl-space-space-halfunit);
+}
+.comparison-links {
+    display: flex;
+    align-items: center;
+    margin-left: 33px;
+    flex-direction: row;
+}
+.comparison-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: var(--dl-space-space-oneandhalfunits);
+    flex-direction: row;
+    padding-bottom: var(--dl-space-space-oneandhalfunits);
+}
+.comparison-get-started {
+    cursor: pointer;
+    display: flex;
+    transition: 0.3s;
+    align-items: center;
+    padding-top: var(--dl-space-space-unit);
+    padding-left: var(--dl-space-space-oneandhalfunits);
+    border-radius: 56px;
+    padding-right: var(--dl-space-space-oneandhalfunits);
+    flex-direction: column;
+    padding-bottom: var(--dl-space-space-unit);
+    background-color: #000000;
+}
+.comparison-text03 {
+    color: rgb(255, 255, 255);
+    font-style: normal;
+    font-weight: 600;
+}
+.comparison-burger-menu {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.comparison-mobile-menu-button {
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(230, 230, 230);
+}
+.small-container{
+    background-color: white;
+    width: 96vw;
+    height: 17.5vh;
+    margin: 2vh auto;
+}
+.big-container{
+    background-color: white;
+    width: 96vw;
+    height: 30vh;
+    margin: 2vh auto;
+}
