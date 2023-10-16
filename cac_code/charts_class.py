@@ -45,7 +45,7 @@ def generate_pie(df,title):
 def generate_heatmap(df):
     fig = px.imshow(df, color_continuous_scale="BuGn")
     
-    fig.show()  
+    #fig.show()  
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
 
