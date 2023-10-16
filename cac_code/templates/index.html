@@ -238,7 +238,12 @@
             <div class="home-container06">
               <div class="home-container07">
                 <div class="home-container08">
-                  <img alt="pastedImage" src="../static/images/graph1-6000w.png" loading="lazy" class="home-image2" />
+                  <script type="text/javascript">
+                    window.addEventListener('load', function () {
+                      var graph = ('{{ heatmap }}');
+                      createGraph(graph, "heatmap");
+                    })
+                  </script>
                 </div>
                 <div class="home-container09">
                   <div class="home-container10">

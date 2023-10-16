@@ -31,6 +31,7 @@ def generate_line(df, x_col, y_col_s, y_col_e, title):
         gridcolor='lightgrey'
     )
     #plotly_fig.show()
+    
     div = plotly.offline.plot(plotly_fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
 
@@ -41,5 +42,11 @@ def generate_pie(df,title):
     #fig.show()
     return div
 
+def generate_heatmap(df):
+    fig = px.imshow(df, color_continuous_scale="BuGn")
+    
+    fig.show()  
+    div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
+    return div
 
     

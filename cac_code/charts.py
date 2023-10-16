@@ -3,7 +3,7 @@ import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
 #from app import app
-from charts_class import generate_line,generate_pie
+from charts_class import generate_line,generate_pie,generate_heatmap
 from datetime import datetime as dt, timedelta
 from home_class import house
 
@@ -107,7 +107,7 @@ for i in range(6):
     #waste_list.append(df_battery.loc[df_battery['time']==datetime,'waste'].values[0])
     #print('\n\n\ncons_list:\n',cons_list,'\n\n')
   total_consumption.append(sum(cons_list))
-  total_waste.append(df_battery.loc[df_battery['time']==dt_holder,'waste'].values[0])
+  total_waste.append(df_battery.loc[df_battery['time']==dt_holder.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00','waste'].values[0])
   #print('\n\n\nsum of cons_list:\n',sum(cons_list),'\n\n')
   #print('\n\n\nsum of waste_list:\n',sum(waste_list),'\n\n')
 
@@ -131,3 +131,10 @@ df_24=pd.DataFrame({
 #print(df_24.head())
 
 optimization_line = generate_line(df_24, 0, 1, None, "Energy Consumption in 24 Hour increments")
+
+
+##correleation heatmap
+df_corr=df_gen.drop(columns=['time','month','hour'])
+df_matrix=df_corr.corr()
+print(df_matrix)
+corr_heatmap=generate_heatmap(df_matrix)
