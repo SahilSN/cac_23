@@ -70,7 +70,10 @@ d={
     'values':value_list
     }
 pie_df=pd.DataFrame(data=d)
-pie = generate_pie(pie_df, "pie")
+#colors=['#921f5d','#6dc551','#94b538','#b8d727','#dbc2bc','#12cac9']
+colors=['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB']
+
+pie = generate_pie(pie_df,colors)
 
 app_df=house.use_df.drop(columns=['time','apparentTemperature','month','day','hour','use_HO'])
 

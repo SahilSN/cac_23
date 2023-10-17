@@ -13,7 +13,7 @@ print('BAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh')
 @app.route("/",methods=['GET','POST'])
 @app.route("/dashboard",methods=['GET','POST'])
 def index():
-
+    print('finished running on '+datetime.now().strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00')
     
 
     print('indexxx')
