@@ -10,12 +10,12 @@ def generate_line(df, x_col, y_col_s, y_col_e, title):
         print("no end")
         print(df.columns[y_col_s:])
         plotly_fig = px.line(df, x=df.columns[x_col], y=df.columns[y_col_s:], title=title,
-                             color_discrete_sequence=["#7DEFFB","#7DFB89"])
+                             color_discrete_sequence=["#7DA1FB","#7DFB89"])
     else:
         print("end")
         print(df.columns[y_col_s:y_col_e])
         plotly_fig = px.line(df, x=df.columns[x_col], y=df.columns[y_col_s:y_col_e], title=title,
-                             color_discrete_sequence=["#7DEFFB","#7DFB89"])
+                            color_discrete_sequence=["#7DA1FB","#7DFB89"])
     plotly_fig.update_traces(line=dict(width=2.2))
     plotly_fig.update_layout(
         plot_bgcolor='white'
@@ -57,17 +57,18 @@ def generate_pie(df,colors = None):
             marker=dict(colors=colors, 
                         line=dict(color='#FFFFFF', width=2))
     )
+    fig.update_layout(margin=dict(t=0.2, b=0.2, l=0.2, r=0.2))
     #fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
-def generate_heatmap(df):
+def generate_heatmap(df,colors=None):
     fig = go.Figure(data=go.Heatmap(
                 z=df.to_numpy().round(2),
                 x=list(df.index.values),
                 y=list(df.columns.values),       
                 xgap=5, ygap=5,
                 zmin=-1, zmax=1,
-                colorscale='Aggrnyl',
+                colorscale=colors,
                 colorbar_thickness=30,
                 colorbar_ticklen=3,
     ))

@@ -340,7 +340,7 @@
 .home-container03 {
   flex: 0 0 auto;
   width: 50%;
-  height: 90vh;
+  height: 100%;
   display: flex;
   position: relative;
   align-self: flex-start;
@@ -391,12 +391,12 @@
 .home-container06 {
   flex: 0 0 auto;
   width: 50%;
-  height: 150vh;
+  height: 100%;
   display: flex;
   position: relative;
   align-self: flex-start;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 .home-container07 {
   flex: 0 0 auto;
