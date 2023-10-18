@@ -19,7 +19,7 @@
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: row;
   justify-content: space-between;
-  background-color: var(--dl-color-success-300);
+  background-image: linear-gradient(to right,#00fe91, #00a2fe);
 }
 .home-left {
   height: 100%;
@@ -58,7 +58,7 @@
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: column;
   padding-bottom: var(--dl-space-space-unit);
-  background-color: #000000;
+  background-image: linear-gradient(to right, #00fe91, #00a2fe);
 }
 .home-get-started:hover {
   background-color: white;
@@ -86,7 +86,7 @@
   padding-left: 0px;
   padding-right: 0px;
   flex-direction: column;
-  background-color: rgb(230, 230, 230);
+  background-color: #23242c;
 }
 .home-header {
   display: flex;
@@ -95,7 +95,7 @@
   flex-direction: column;
 }
 .home-text04 {
-  color: #000000;
+  color: #ffffff;
   height: 92px;
   font-size: 64px;
   font-style: normal;
@@ -104,7 +104,7 @@
   line-height: 80px;
 }
 .home-text07 {
-  color: #005011;
+  color: white;
   font-size: 20px;
   max-width: 600px;
   margin-top: 16px;
@@ -133,7 +133,7 @@
   margin: 5px;
   margin-top: 3px;
   width: 19%;
-  background-color: white;
+  background-color: #00fd91;
   display: flex;
   position: relative;
   align-items: center;
@@ -141,7 +141,7 @@
   flex-direction: column;
 }
 .home-text08 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: 258px;
   height: 58px;
   font-size: 10px;
@@ -151,7 +151,7 @@
   line-height: 80px;
 }
 .home-text09 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: auto;
   height: auto;
   font-size: 60px;
@@ -173,7 +173,7 @@
   margin: 5px;
   margin-top: 3px;
   width: 19%;
-  background-color: white;
+  background-color: #00e5af;
   display: flex;
   position: relative;
   align-items: center;
@@ -181,7 +181,7 @@
   flex-direction: column;
 }
 .home-text11 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: 258px;
   height: 58px;
   font-size: 15px;
@@ -191,7 +191,7 @@
   line-height: 80px;
 }
 .home-text12 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: auto;
   height: auto;
   font-size: 60px;
@@ -213,7 +213,7 @@
   margin: 5px;
   margin-top: 3px;
   width: 19%;
-  background-color: white;
+  background-color: #00d3c3;
   display: flex;
   position: relative;
   align-items: center;
@@ -221,7 +221,7 @@
   flex-direction: column;
 }
 .home-text14 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: 258px;
   height: 58px;
   font-size: 15px;
@@ -231,7 +231,7 @@
   line-height: 80px;
 }
 .home-text15 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: auto;
   height: auto;
   font-size: 60px;
@@ -253,7 +253,7 @@
   margin: 5px;
   margin-top: 3px;
   width: 19%;
-  background-color: white;
+  background-color: #00bedd;
   display: flex;
   position: relative;
   align-items: center;
@@ -261,7 +261,7 @@
   flex-direction: column;
 }
 .home-text17 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: 258px;
   height: 58px;
   font-size: 15px;
@@ -271,7 +271,7 @@
   line-height: 80px;
 }
 .home-text18 {
-  color: black;
+  color: rgb(255, 255, 255);
   width: auto;
   height: auto;
   font-size: 60px;
@@ -293,7 +293,7 @@
   margin: 5px;
   margin-top: 3px;
   width: 19%;
-  background-color: white;
+  background-color: #00a2fe;
   display: flex;
   position: relative;
   align-items: center;
@@ -301,7 +301,7 @@
   flex-direction: column;
 }
 .home-text20 {
-  color: black;
+  color: white;
   width: 258px;
   height: 58px;
   font-size: 15px;
@@ -311,7 +311,7 @@
   line-height: 80px;
 }
 .home-text21 {
-  color: black;
+  color: white;
   width: auto;
   height: auto;
   font-size: 60px;
