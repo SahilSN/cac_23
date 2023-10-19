@@ -5,7 +5,7 @@
   min-height: 100vh;
   overflow-x: hidden;
   flex-direction: column;
-  background-color: rgb(230, 230, 230);
+  background-color: #23242c;
 }
 
 .home1-centered {
@@ -20,7 +20,7 @@
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: row;
   justify-content: space-between;
-  background-color: var(--dl-color-success-300);
+  background-image: linear-gradient(to right,#00fe91, #00a2fe);
   z-index: 1;
 }
 .home1-left {
@@ -62,7 +62,7 @@
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: column;
   padding-bottom: var(--dl-space-space-unit);
-  background-color: #000000;
+  background-color: #23242c;
 }
 .home1-text03 {
   color: rgb(255, 255, 255);
@@ -189,7 +189,7 @@ section img#panels{
   flex-direction: row;
   margin: 10px;
   margin-top: 5vh;
-  background-color: white;
+  background-color: #23242c;;
 }
 .home1-image1 {
   width: 100%;
@@ -200,11 +200,11 @@ section img#panels{
   user-select: none;
 }
 .home1-text07 {
-  color: rgb(100, 100, 100);
+  color: rgb(255, 255, 255);
   width: 100%;
   height: 50%;
   align-self: center;
-  font-size: 50px;
+  font-size: 20px;
   font-style: normal;
   text-align: center;
   font-weight: 700;
@@ -215,10 +215,10 @@ section img#panels{
   display: flex;
   flex-direction: row;
   margin: 10px;
-  background-color: white;
+  background-color: #23242c;
 }
 .home1-text10 {
-  color: rgb(100, 100, 100);
+  color: rgb(255, 255, 255);
   width: 100%;
   height: 50%;
   align-self: center;
@@ -241,7 +241,7 @@ section img#panels{
   display: flex;
   flex-direction: row;
   margin: 10px;
-  background-color: white;
+  background-color:#23242c;
 }
 .home1-image3 {
   width: 100%;
@@ -252,7 +252,7 @@ section img#panels{
   user-select: none;
 }
 .home1-text13 {
-  color: rgb(100, 100, 100);
+  color: rgb(255, 255, 255);
   width: 100%;
   height: 50%;
   align-self: center;
@@ -342,7 +342,7 @@ section img#panels{
   }
   .home1-text10 {
     color: rgb(255, 255, 255);
-    font-size: 32px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 700;
     line-height: 36px;
@@ -355,7 +355,7 @@ section img#panels{
   }
   .home1-text13 {
     color: rgb(255, 255, 255);
-    font-size: 32px;
+    font-size: 10px;
     font-style: normal;
     font-weight: 700;
     line-height: 36px;

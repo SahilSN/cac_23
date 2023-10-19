@@ -3,7 +3,7 @@ import pandas as pd
 import sys
 
 from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
-from charts import main_line,pie,pie_statement_list, optimization_line, corr_heatmap
+from charts import main_line,pie, cons_over_time, corr_heatmap, rec_list
 
 from datetime import datetime, timedelta
 
@@ -28,8 +28,8 @@ def optimization():
     print('optimiiizion')
 
 
-    return render_template("optimization.html",pie=pie,pie_list=pie_statement_list,
-                            line=optimization_line)
+    return render_template("optimization.html",pie=pie,rec_list=rec_list,
+                            line=cons_over_time)
 
 @app.route("/landing")
 def landing():

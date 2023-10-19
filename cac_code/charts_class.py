@@ -5,24 +5,25 @@ import pandas as pd
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 
-def generate_line(df, x_col, y_col_s, y_col_e, title):
+def generate_line(df, x_col, y_col_s, y_col_e, title,colors=None,y_range=None):
     if (y_col_e == None):
         print("no end")
         print(df.columns[y_col_s:])
         plotly_fig = px.line(df, x=df.columns[x_col], y=df.columns[y_col_s:], title=title,
-                             color_discrete_sequence=["#7DA1FB","#7DFB89"])
+                             color_discrete_sequence=colors)
     else:
         print("end")
         print(df.columns[y_col_s:y_col_e])
         plotly_fig = px.line(df, x=df.columns[x_col], y=df.columns[y_col_s:y_col_e], title=title,
-                            color_discrete_sequence=["#7DA1FB","#7DFB89"])
+                            color_discrete_sequence=colors)
     plotly_fig.update_traces(line=dict(width=2.2))
     plotly_fig.update_layout(
         plot_bgcolor='rgba(36,37,45,255)',
         paper_bgcolor='rgba(36,37,45,255)',
         font_color="white",
         title_font_color="white",
-        legend_title_font_color="white"
+        legend_title_font_color="white",
+        yaxis_range=y_range
     )
     plotly_fig.update_xaxes(
         #mirror=True,
