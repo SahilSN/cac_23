@@ -137,7 +137,7 @@ optimization_line = generate_line(df_24, 0, 1, None, "Energy Consumption in 24 H
 
 
 ##correleation heatmap
-df_corr=df_gen.drop(columns=['time','month','hour'])
+df_corr=df_gen.drop(columns=['time'])
 df_matrix=df_corr.corr()
 colors=[[0,"rgba(125,251,137,255)"],[0.5,'white'],[1.0,"rgba(125,224,251,255)"]]
 corr_heatmap=generate_heatmap(df_matrix,colors)
