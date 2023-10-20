@@ -107,12 +107,10 @@
                   loading="lazy"
                   class="home1-image2"
                 /> -->
-                <h1 class="home1-text07">
+                <!-- <h1 class="home1-text07">
                   <span> rahhhh</span>
                   <br />
-                </h1>
-              </div>
-              <div class="home1-container3" id="container3">
+                </h1> -->
                 <script type="text/javascript">
                   window.addEventListener('load', function () {
                     var graph = ('{{ line }}');
@@ -120,34 +118,28 @@
                   })
                 </script>
                 <div id="graph1" class="home1-image2"></div>
+              </div>
+              <div class="home1-container3" id="container3">
+
                 <!-- <img
                   alt="pastedImage"
                   src="../static/images/graph1-6000w.png"
                   loading="lazy"
                   class="home1-image2"
                 /> -->
+                <br><br><br><br>
                 <h1 class="home1-text10">
-                  <span>
-                    {{ rec_list[0] }}
-                  </span>
+                  <ul>
+                    {% for i in rec_list %}
+                      <li class="rec">
+                        • {{ i }}{% endfor %}
+                      </li>
+                    
+                  </ul>
                   <br />
                 </h1>
               </div>
-              <div class="home1-container4" id="container4">
-                <img
-                  alt="pastedImage"
-                  src="../static/images/graph1-6000w.png"
-                  loading="lazy"
-                  class="home1-image3"
-                />
-                <h1 class="home1-text13">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </span>
-                  <br />
-                </h1>
-              </div>
+              
             </div>
           </div>
         <!-- <div class="e filler" id="filler"></div> -->
