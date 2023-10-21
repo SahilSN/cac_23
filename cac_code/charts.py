@@ -101,14 +101,14 @@ for i in range(len(value_list)):
 bad_rec_dict=dict(sorted(bad_rec_dict.items(), key=lambda x:x[1], reverse=True))
 
 bad_statements=[
-  lambda i,j:"You used {} {}% more than average, remember to turn off lights or running appliances.".format(i,j),
-  lambda i,j:"You used {} {}% more than yesterday, try to limit your energy consumption.".format(i,j),
-  lambda i,j:"Next time, try to limit your consumption for the {}, you used it {}% more than normal.".format(i,j)
+  lambda i,j:"You used {} [{}%] more than average, remember to turn off lights or running appliances.".format(i,j),
+  lambda i,j:"You used {} [{}%] more than yesterday, try to limit your energy consumption.".format(i,j),
+  lambda i,j:"Next time, try to limit your consumption for the {}, you used it [{}%] more than normal.".format(i,j)
 ]
 good_statements=[
-  lambda i,j:"Great job, you used {} {}% less than average.".format(i,j),
-  lambda i,j:"Nice! you used {} {}% less than last week.".format(i,j),
-  lambda i,j:"Keep up the good work!{} was used {}% less than normal.".format(i,j)
+  lambda i,j:"Great job, you used {} ({}%) less than average.".format(i,j),
+  lambda i,j:"Nice! you used {} ({}%) less than last week.".format(i,j),
+  lambda i,j:"Keep up the good work! {} was used ({}%) less than normal.".format(i,j)
 ]
 rec_list=[]
 for i in bad_rec_dict:
