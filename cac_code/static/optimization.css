@@ -378,7 +378,10 @@ section img#panels{
     transform: translateY(0);
   }
 }
-
+.home-logo {
+  width: 185px;
+  
+}
 /* Apply the animation to the elements with a class */
 .fade-in {
   display: flex;
