@@ -97,3 +97,7 @@
     height: 30vh;
     margin: 2vh auto;
 }
+.comparison-links span{
+    margin-left: 20px;
+    margin-right: 20px;
+  }

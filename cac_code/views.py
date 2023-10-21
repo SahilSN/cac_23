@@ -31,6 +31,11 @@ def optimization():
     return render_template("optimization.html",pie=pie,rec_list=rec_list,
                             line=cons_over_time)
 
+@app.route("/comparison",methods=['GET','POST'])
+def comparison():
+    print('comparison')
+    return render_template("comparison.html")
+
 @app.route("/landing")
 def landing():
     print('landing')

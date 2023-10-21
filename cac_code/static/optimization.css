@@ -184,7 +184,7 @@ section img#panels{
   align-items: center;
 }
 .home1-container2 {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin: 10px;
@@ -222,9 +222,9 @@ section img#panels{
   width: 100%;
   height: 50%;
   align-self: center;
-  font-size: 30px;
+  font-size: 15px;
   font-style: normal;
-  text-align: center;
+  text-align: right;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -390,8 +390,8 @@ section img#panels{
 }
 
 .home1-links span{
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 #a {
   transition: opacity 0.5s; 
