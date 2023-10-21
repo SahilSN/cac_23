@@ -53,13 +53,10 @@
             <div class="home1-links">
               <span><a href="/dashboard">Dashboard</a></span>
               <span><a href="/optimization">Optimization</a></span>
-              <span><a href="/comparison">Comparison</a></span>
+              <span><a href="#">About Us</a></span>
             </div>
           </div>
           <div class="home1-right">
-            <div class="home1-get-started">
-              <span class="home1-text03">Sign in</span>
-            </div>
             <div id="open-mobile-menu" class="home1-burger-menu">
               <img
                 alt="pastedImage"
@@ -85,7 +82,7 @@
           </section> -->
 
           <section id="a">
-            <img src="../static/images/parallax_solar_panels.jpeg" id="background">
+            <img src="../static/images/parallax_solar_panels.jpg" id="background">
             <h1 class="home1-text04" id="txt">Optimization</h1>
             <a href="#" id="btn" onclick="transition()">Explore</a>
             <!-- <img src="../static/images/solar_panel_bottom.png" id="panels"> -->
@@ -129,13 +126,20 @@
                 /> -->
                 <br><br><br><br>
                 <h1 class="home1-text10">
-                  <ul>
-                    {% for i in rec_list %}
-                      <li class="rec">
-                        • {{ i }}{% endfor %}
-                      </li>
-                    
-                  </ul>
+                  <div class="list">
+                    <ul>
+                      {% for item in rec_list %}
+                        <li class="rec">
+                          • {% if '(' in item %}
+                            {{ item | replace("(", "<span class='highlight-good'>") | replace(")", "</span>") | safe }}
+                            {% else %}
+                            {{ item | replace("[", "<span class='highlight-bad'>") | replace("]", "</span>") | safe }}
+                            {% endif %}
+
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                   <br />
                 </h1>
               </div>

@@ -144,7 +144,7 @@ section img#panels{
   /* background-color: rgb(230, 230, 230); */
 }
 .home1-text04 {
-  color: black;
+  color: white;
   height: 92px;
   position: absolute;
   font-size: 92px;
@@ -211,7 +211,7 @@ section img#panels{
   line-height: 1.5;
 }
 .home1-container3 {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin: 10px;
@@ -222,9 +222,9 @@ section img#panels{
   width: 100%;
   height: 50%;
   align-self: center;
-  font-size: 15px;
+  font-size: 30px;
   font-style: normal;
-  text-align: right;
+  text-align: center;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -237,7 +237,7 @@ section img#panels{
   user-select: none;
 }
 .home1-container4 {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   margin: 10px;
@@ -390,8 +390,8 @@ section img#panels{
 }
 
 .home1-links span{
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 #a {
   transition: opacity 0.5s; 
@@ -410,23 +410,28 @@ section img#panels{
   opacity: 1;
 }
 
-ul{
+.list{
+  display: flex;
+  justify-content: center;
   width: 100vw;
+}
+
+ul{
   text-align: center;
   list-style-type: none;
   text-decoration: none;
 }
 
 .rec{
-  font-size: 25px;
-  text-align: center;
+  font-size: 18px;
+  text-align: left;
   margin: 20px;
 }
 
-.good{
+.highlight-good{
   color: greenyellow;
 }
 
-.bad{
+.highlight-bad{
   color: red;
 }
