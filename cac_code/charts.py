@@ -3,7 +3,7 @@ import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
 #from app import app
-from charts_class import generate_line,generate_pie,generate_heatmap
+from charts_class import generate_line,generate_bar,generate_pie,generate_heatmap
 from datetime import datetime as dt, timedelta
 from home_class import house
 
@@ -18,7 +18,7 @@ df_gen=house.gen_df
 
 #line-chart (consumption, generation, battery 12 hrs bfr and 12 after)
 df_battery = pd.read_csv("cac_code/csv_data/battery_data.csv",)
-
+"""
 #df_battery["battery"]=df_battery["battery"].astype(float)
 # Creates Main Line Graph
 main_line_df = df_gen[["time", "gen_Sol"]]
@@ -52,7 +52,6 @@ line_df=pd.concat([main_line_filter_df_before, df_after], axis=0)
 line_df=line_df.drop(columns=["battery"])
 ### Generates line graph with the parameters
 main_line = generate_line(line_df, 0, 1, None, "Energy Consumption, Generation, and Battery 12 Hours Before and After")
-
 #pie chart (distribution of consumption by appliance last twelve hours)
 appliance_list=['Home Office','Fridge','Wine Cellar', 'Garage Door','Microwave','Living Room']
 app_df=house.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
@@ -138,3 +137,22 @@ df_corr=df_gen.drop(columns=['time','month','hour'])
 df_matrix=df_corr.corr()
 
 corr_heatmap=generate_heatmap(df_matrix)
+"""
+
+## Predicted savings line
+print("hello")
+df_savings=df_use.loc[house.next_days(7,True)][["time","use_HO"]]
+df_savings["use_HO_save"] = df_savings["use_HO"]*0.92
+df_savings_sum=df_savings.loc[::60] # gets every hour
+
+for time in df_savings_sum["time"]: # iterates through each hour and appends the sum of usage to the df_savings_sum
+  mask = house.next_hour(time,True)
+  df_savings_sum.loc[df_savings_sum["time"]==time,"use_HO"] = df_savings.loc[mask]["use_HO"].sum()
+  df_savings_sum.loc[df_savings_sum["time"]==time,"use_HO_save"] = df_savings.loc[mask]["use_HO_save"].sum()
+
+compare_bar=generate_bar(df_savings_sum,0,1,None,"Predicted energy saved Comparison")
+
+### Code for bar graph over time of predicted energy saved
+# df_savings_dif = df_savings_sum[["time","use_HO"]]
+# df_savings_dif["use_HO"] = df_savings_sum["use_HO"]-df_savings_sum["use_HO_save"]
+# savings_bar=generate_bar(df_savings_dif,0,1,None,"Predicted energy saved")

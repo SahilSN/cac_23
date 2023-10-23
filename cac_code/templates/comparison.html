@@ -70,10 +70,23 @@
           </div>
         </nav>
         <section class="content">
+          <script src="../static/js/loadCharts.js"></script>
             <div class="small-container"></div>
+            <div>
+            </div>
+            <div class="big-container">
+                <script type="text/javascript">
+                  window.addEventListener('load', function () {
+                    var graph = ('{{ compare_bar }}');
+                    createGraph(graph, "compare_bar");
+                  })
+                </script>
+                <div id="compare_bar" class="home1-image1"></div>
+
+            </div>
             <div class="small-container"></div>
-            <div class="big-container"></div>
-            <div class="small-container"></div>
+            <br><br>
+
         </section>
   </body>
 </html>
