@@ -3,9 +3,9 @@ import pandas as pd
 import sys
 
 #from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
+from stats import est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees
 from charts import compare_bar
 #from charts import main_line,pie,pie_statement_list, optimization_line, corr_heatmap
-
 from datetime import datetime, timedelta
 
 from app import app
@@ -28,10 +28,9 @@ def index():
 def optimization():
 
     print('optimiiizion')
-
     return render_template("optimization.html")
-    #return render_template("optimization.html",pie=pie,pie_list=pie_statement_list,
-    #                        line=optimization_line)
+    # return render_template("optimization.html",pie=pie,pie_list=pie_statement_list,
+    #                         line=optimization_line)
 
 @app.route("/landing")
 def landing():
@@ -40,5 +39,8 @@ def landing():
 
 @app.route("/stats")
 def stats():
+    est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees
     print("STATS COMPARISON")
-    return render_template("comparison.html",compare_bar=compare_bar)
+    return render_template("comparison.html",compare_bar=compare_bar, est_energy_savings=est_energy_savings,
+                           est_co2e_savings=est_co2e_savings,est_car_miles=est_car_miles,est_plane_miles=est_plane_miles,
+                           est_trees=est_trees)

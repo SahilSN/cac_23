@@ -138,7 +138,6 @@ df_matrix=df_corr.corr()
 
 corr_heatmap=generate_heatmap(df_matrix)
 """
-
 ## Predicted savings line
 print("hello")
 df_savings=df_use.loc[house.next_days(7,True)][["time","use_HO"]]

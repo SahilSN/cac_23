@@ -1,92 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Optimization</title>
-    <meta property="og:title" content="Comparison" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-        <!-- Scripts needed to load charts -->
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: quicksand;
-        font-size: 16px;
-      }
+<head>
+  <title>Optimization</title>
+  <meta property="og:title" content="Comparison" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <!-- Scripts needed to load charts -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-gray-black);
-        background-color: var(--dl-color-gray-white);
+  <style data-tag="reset-style-sheet">
+    html {
+      line-height: 1.15;
+    }
 
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      data-tag="font"
-    />
-    <link rel="stylesheet" href="../static/style.css" />
-  </head>
-  <body>
-    <div>
-      <link href="../static/comparison.css" rel="stylesheet" />
+    body {
+      margin: 0;
+    }
 
-      <div class="comparison-container">
-        <nav class="comparison-centered">
-          <div class="comparison-left">
-            <img
-              alt="pastedImage"
-              src="../static/images/pastedimage-no9b-1500h.png"
-              class="comparison-logo"
-            />
-            <div class="comparison-links">
-              <span><a href="/dashboard">Dashboard</a></span>
-              <span><a href="/optimization">Optimization</a></span>
-              <span><a href="#">About Us</a></span>
+    * {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+    }
+
+    p,
+    li,
+    ul,
+    pre,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    figure,
+    blockquote,
+    figcaption {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      background-color: transparent;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    button,
+    select {
+      text-transform: none;
+    }
+
+    button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"] {
+      -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    button:-moz-focus,
+    [type="button"]:-moz-focus,
+    [type="reset"]:-moz-focus,
+    [type="submit"]:-moz-focus {
+      outline: 1px dotted ButtonText;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    input {
+      padding: 2px 4px;
+    }
+
+    img {
+      display: block;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+  </style>
+  <style data-tag="default-style-sheet">
+    html {
+      font-family: quicksand;
+      font-size: 16px;
+    }
+
+    body {
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.15;
+      color: var(--dl-color-gray-black);
+      background-color: var(--dl-color-gray-white);
+
+    }
+  </style>
+  <link rel="stylesheet" data-tag="font" />
+  <link rel="stylesheet" href="../static/style.css" />
+</head>
+
+<body>
+  <div>
+    <link href="../static/comparison.css" rel="stylesheet" />
+
+    <div class="comparison-container">
+      <nav class="comparison-centered">
+        <div class="comparison-left">
+          <img alt="pastedImage" src="../static/images/pastedimage-no9b-1500h.png" class="comparison-logo" />
+          <div class="comparison-links">
+            <span><a href="/dashboard">Dashboard</a></span>
+            <span><a href="/optimization">Optimization</a></span>
+            <span><a href="#">About Us</a></span>
+          </div>
+        </div>
+        <div class="comparison-right">
+          <div class="comparison-get-started">
+            <span class="comparison-text03">Sign in</span>
+          </div>
+          <div id="open-mobile-menu" class="comparison-burger-menu">
+            <img alt="pastedImage" src="../static/images/pastedimage-no9b-1500h.png"
+              class="comparison-mobile-menu-button" />
+          </div>
+        </div>
+      </nav>
+      <section class="content">
+        <script src="../static/js/loadCharts.js"></script>
+        <!-- <div class="small-container"> -->
+            <div class="home-number">
+              <h1 class="home-text08">Estimated Energy Saved</h1>
+              <h1 class="home-text09">{{est_energy_savings}}</h1>
+              <!--<h1 class="home-text10">+15%</h1>-->
+            </div>
+            <div class="home-number1">
+              <h1 class="home-text08">CO2</h1>
+              <h1 class="home-text09">{{est_co2e_savings}}</h1>
+              <!--<h1 class="home-text13">+15%</h1>-->
+            </div>
+            <div class="home-number2">
+              <h1 class="home-text08">Car Miles</h1>
+              <h1 class="home-text09">{{est_car_miles}}</h1>
+              <!--<h1 class="home-text16">+15%</h1>-->
+            </div>
+            <div class="home-number3">
+              <h1 class="home-text08">Plane Miles</h1>
+              <h1 class="home-text09">{{est_plane_miles}}</h1>
+              <!--<h1 class="home-text19">+15%</h1>-->
+            </div>
+            <div class="home-number4">
+              <h1 class="home-text08">Trees</h1>
+              <h1 class="home-text09">{{est_trees}}</h1>
+              <!--<h1 class="home-text22">+15%</h1>-->
             </div>
           </div>
-          <div class="comparison-right">
-            <div class="comparison-get-started">
-              <span class="comparison-text03">Sign in</span>
-            </div>
-            <div id="open-mobile-menu" class="comparison-burger-menu">
-              <img
-                alt="pastedImage"
-                src="../static/images/pastedimage-no9b-1500h.png"
-                class="comparison-mobile-menu-button"
-              />
-            </div>
-          </div>
-        </nav>
-        <section class="content">
-          <script src="../static/js/loadCharts.js"></script>
-            <div class="small-container"></div>
-            <div>
-            </div>
-            <div class="big-container">
-                <script type="text/javascript">
-                  window.addEventListener('load', function () {
-                    var graph = ('{{ compare_bar }}');
-                    createGraph(graph, "compare_bar");
-                  })
-                </script>
-                <div id="compare_bar" class="home1-image1"></div>
+        <!-- </div> -->
+        <div>
+        </div>
+        <div class="big-container">
+          <script type="text/javascript">
+            window.addEventListener('load', function () {
+              var graph = ('{{ compare_bar }}');
+              createGraph(graph, "compare_bar");
+            })
+          </script>
+          <div id="compare_bar" class="home1-image1"></div>
 
-            </div>
-            <div class="small-container"></div>
-            <br><br>
+        </div>
+        <div class="small-container"></div>
+        <br><br>
 
-        </section>
-  </body>
+      </section>
+</body>
+
 </html>
