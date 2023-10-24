@@ -16,7 +16,6 @@ y=datetimes.index(now)
 
 period=datetimes[x:y]
 #print(period)
-"""
 total_generated=0
 total_consumed=0
 battery_left=0
@@ -32,7 +31,6 @@ total_generated=round(total_generated)
 total_consumed=round(total_consumed)
 generation_efficiency=round(generation_efficiency)
 hour_avg=round(hour_avg)
-"""
 
 ### Note: Same processing as in charts.py -- is there a way to make this more efficient?
 ## Predicted savings line

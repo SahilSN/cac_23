@@ -18,7 +18,7 @@ df_gen=house.gen_df
 
 #line-chart (consumption, generation, battery 12 hrs bfr and 12 after)
 df_battery = pd.read_csv("cac_code/csv_data/battery_data.csv",)
-"""
+
 #df_battery["battery"]=df_battery["battery"].astype(float)
 # Creates Main Line Graph
 main_line_df = df_gen[["time", "gen_Sol"]]
@@ -137,7 +137,7 @@ df_corr=df_gen.drop(columns=['time','month','hour'])
 df_matrix=df_corr.corr()
 
 corr_heatmap=generate_heatmap(df_matrix)
-"""
+
 ## Predicted savings line
 print("hello")
 df_savings=df_use.loc[house.next_days(7,True)][["time","use_HO"]]
