@@ -27,8 +27,8 @@
         text-transform: none;
         letter-spacing: normal;
         line-height: 1.15;
-        color: var(--dl-color-gray-black);
-        background-color: var(--dl-color-gray-white);
+        color: #23242c;
+        background-color: #23242c;
 
       }
     </style>
@@ -45,28 +45,14 @@
       <div class="home1-container">
         <nav class="home1-centered">
           <div class="home1-left">
-            <img
-              alt="pastedImage"
-              src="../static/images/pastedimage-no9b-1500h.png"
-              class="home1-logo"
-            />
-            <div class="home1-links">
+            <img alt="pastedImage" src="../static/images/cac_logo.jpg" class="home-logo" />
+            <div class="home-links">
               <span><a href="/dashboard">Dashboard</a></span>
               <span><a href="/optimization">Optimization</a></span>
-              <span><a href="#">About Us</a></span>
+              <span><a href="/comparison">Comparison</a></span>
             </div>
           </div>
           <div class="home1-right">
-            <div class="home1-get-started">
-              <span class="home1-text03">Sign in</span>
-            </div>
-            <div id="open-mobile-menu" class="home1-burger-menu">
-              <img
-                alt="pastedImage"
-                src="../static/images/pastedimage-no9b-1500h.png"
-                class="home1-mobile-menu-button"
-              />
-            </div>
           </div>
         </nav>
           <!-- <section class="home1-hero">
@@ -85,7 +71,7 @@
           </section> -->
 
           <section id="a">
-            <img src="../static/images/parallax_solar_panels.jpeg" id="background">
+            <img src="../static/images/parallax_solar_panels.jpg" id="background">
             <h1 class="home1-text04" id="txt">Optimization</h1>
             <a href="#" id="btn" onclick="transition()">Explore</a>
             <!-- <img src="../static/images/solar_panel_bottom.png" id="panels"> -->
@@ -107,12 +93,10 @@
                   loading="lazy"
                   class="home1-image2"
                 /> -->
-                <h1 class="home1-text07">
-                  <span> {{pie_list[0]}}</span>
+                <!-- <h1 class="home1-text07">
+                  <span> rahhhh</span>
                   <br />
-                </h1>
-              </div>
-              <div class="home1-container3" id="container3">
+                </h1> -->
                 <script type="text/javascript">
                   window.addEventListener('load', function () {
                     var graph = ('{{ line }}');
@@ -120,35 +104,35 @@
                   })
                 </script>
                 <div id="graph1" class="home1-image2"></div>
+              </div>
+              <div class="home1-container3" id="container3">
+
                 <!-- <img
                   alt="pastedImage"
                   src="../static/images/graph1-6000w.png"
                   loading="lazy"
                   class="home1-image2"
                 /> -->
+                <br><br><br><br>
                 <h1 class="home1-text10">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </span>
+                  <div class="list">
+                    <ul>
+                      {% for item in rec_list %}
+                        <li class="rec">
+                          • {% if '(' in item %}
+                            {{ item | replace("(", "<span class='highlight-good'>") | replace(")", "</span>") | safe }}
+                            {% else %}
+                            {{ item | replace("[", "<span class='highlight-bad'>") | replace("]", "</span>") | safe }}
+                            {% endif %}
+
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                   <br />
                 </h1>
               </div>
-              <div class="home1-container4" id="container4">
-                <img
-                  alt="pastedImage"
-                  src="../static/images/graph1-6000w.png"
-                  loading="lazy"
-                  class="home1-image3"
-                />
-                <h1 class="home1-text13">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </span>
-                  <br />
-                </h1>
-              </div>
+              
             </div>
           </div>
         <!-- <div class="e filler" id="filler"></div> -->

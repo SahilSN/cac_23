@@ -80,6 +80,7 @@ for index,row in df_use.iterrows():
         row.use_HO = row.use_HO * 3
     else:
         row.use_HO = row.use_HO * 1
+    '''
     if row.month ==9:
         row.use_HO=row.use_HO *0.95
     if row.month ==10:
@@ -88,7 +89,7 @@ for index,row in df_use.iterrows():
         row.use_HO=row.use_HO *0.8
     if row.month ==12:
         row.use_HO=row.use_HO *0.6
-
+    '''
 
 #df_use['use_HO'] = df_use['use_HO'].apply(lambda x: x*0.35)
 

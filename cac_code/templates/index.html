@@ -113,8 +113,8 @@
       text-transform: none;
       letter-spacing: normal;
       line-height: 1.15;
-      color: var(--dl-color-gray-black);
-      background-color: var(--dl-color-gray-white);
+      color: #23242c;
+      background-color: #23242c;
 
     }
   </style>
@@ -150,17 +150,14 @@
     <div class="home-container">
       <nav class="home-centered">
         <div class="home-left">
-          <img alt="pastedImage" src="../static/images/pastedimage-no9b-1500h.png" class="home-logo" />
+          <img alt="pastedImage" src="../static/images/cac_logo.jpg" class="home-logo" />
           <div class="home-links">
             <span><a href="/dashboard">Dashboard</a></span>
             <span><a href="/optimization">Optimization</a></span>
-            <span ><a href="#">About Me</a></span>
+            <span><a href="/comparison">Comparison</a></span>
           </div>
         </div>
         <div class="home-right">
-          <div class="home-get-started">
-            <span class="home-text03">Sign in</span>
-          </div>
         </div>
       </nav>
       <section class="home-hero">
@@ -170,8 +167,7 @@
             <br />
           </h1>
           <p class="home-text07">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt.
+            View Today's Stats
           </p>
         </header>
         <div class="home-outline">
@@ -222,36 +218,26 @@
           <!-- Pie chart event listener + div -->
 
             <div class="home-container03">
-              <div class="home-container04">
-                <div class="home-container05" id="line">
-                  <script type="text/javascript">
-                    window.addEventListener('load', function () {
-                      var graph = ('{{ pie }}');
-                      createGraph(graph, "pie");
-                    })
-                  </script>
-                  <div id="pie" class="home-image"></div>
-                  <img alt="pastedImage" src="../static/images/graph1-6000w.png" loading="lazy" class="home-image1" />
-                </div>
-              </div>
+              <script type="text/javascript">
+                window.addEventListener('load', function () {
+                  var graph = ('{{ pie }}');
+                  createGraph(graph, "pie");
+                })
+              </script>
+              <div id="pie" class="home-image"></div>
+  
             </div>
             <div class="home-container06">
-              <div class="home-container07">
-                <div class="home-container08">
-                  <script type="text/javascript">
-                    window.addEventListener('load', function () {
-                      var graph = ('{{ heatmap }}');
-                      createGraph(graph, "heatmap");
-                    })
-                  </script>
-                </div>
-                <div class="home-container09">
-                  <div class="home-container10">
-                    <img alt="pastedImage" src="../static/images/graph1-6000w.png" loading="lazy" class="home-image3" />
-                    <img alt="pastedImage" src="../static/images/graph1-6000w.png" loading="lazy" class="home-image4" />
-                  </div>
-                </div>
-              </div>
+         
+              <script type="text/javascript">
+                window.addEventListener('load', function () {
+                  var graph = ('{{ heatmap }}');
+                  createGraph(graph, "heatmap");
+                })
+              </script>
+    
+              <div id="heatmap" class="home-image"></div>
+              
             </div>
           </div>
         </div>
