@@ -34,7 +34,7 @@ for datetime in dt_list:
     act_use+=chunk*value_percent
     counter+=1
   percent=str(round(((d-act_use)/d)*100,2))+'%'
-  print(percent)
+  print(datetime, '\t\t',percent)
   modeled_use.append(round(act_use,4))
   percent_saved.append(percent)
 
