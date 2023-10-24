@@ -83,23 +83,6 @@ class House:
         app_df=house.use_df.drop(columns=['time','apparentTemperature','month','day','hour','use_HO'])       
         avg_list=[]
 
-    def next_days(self,days,exception=False): #predicted hourly
-        now = self.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-5]+'00:00'
-        next_x_days = (self.datetime + timedelta(days=days)).strftime("%Y-%m-%d %H:%M:%S")[:-5]+'00:00'
-        mask_after = (self.use_df['time'] >= now) & (self.use_df['time'] <= next_x_days)
-        if exception:
-            return mask_after
-        times = self.use_df.loc[mask_after].time.values.tolist()
-        return times[0::30]
-    def next_hour(self,time,exception=False): # predicted hour
-        time_dt = dt.strptime(time,"%Y-%m-%d %H:%M:%S")
-        next_1_hour = (time_dt + timedelta(minutes=59)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
-        mask_after = (self.use_df['time'] >= time) & (self.use_df['time'] <= next_1_hour)
-        if exception:
-            return mask_after
-        times = self.use_df.loc[mask_after].time.values.tolist()
-        return times
-
         for column in app_df:
             avg_list.append(app_df[column].sum()/503911)
 
@@ -118,7 +101,25 @@ class House:
 
         bad_rec_dict=dict(sorted(bad_rec_dict.items(), key=lambda x:x[1], reverse=True))
         return bad_rec_dict, good_rec_dict,avg
+
+    def next_days(self,days,exception=False): #predicted hourly
+        now = self.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-5]+'00:00'
+        next_x_days = (self.datetime + timedelta(days=days)).strftime("%Y-%m-%d %H:%M:%S")[:-5]+'00:00'
+        mask_after = (self.use_df['time'] >= now) & (self.use_df['time'] <= next_x_days)
+        if exception:
+            return mask_after
+        times = self.use_df.loc[mask_after].time.values.tolist()
+        return times[0::30]
+    def next_hour(self,time,exception=False): # predicted hour
+        time_dt = dt.strptime(time,"%Y-%m-%d %H:%M:%S")
+        next_1_hour = (time_dt + timedelta(minutes=59)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+        mask_after = (self.use_df['time'] >= time) & (self.use_df['time'] <= next_1_hour)
+        if exception:
+            return mask_after
+        times = self.use_df.loc[mask_after].time.values.tolist()
+        return times
+
     
 house=House(0)
 #print(house.last_24(dt.now()))
-print(house.next_days(31,True))
+#print(house.next_days(31,True))

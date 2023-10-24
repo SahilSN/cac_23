@@ -68,15 +68,17 @@ def generate_pie(df,colors = None):
                     title_font_color="white",
                     legend_title_font_color="white",
                     margin=dict(t=0.2, b=0.2, l=0.2, r=0.2))
+    
+    #fig.show()
+    div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
+    return div
 def generate_bar(df, x_col, y_col_s, y_col_e, title, log=False):
     #zeros = pd.DataFrame(0, index=np.arange(len(df)), columns="zero")["zero"]
     fig = px.bar(df, x=df.columns[x_col], y=df.columns[y_col_s:],
              labels={'pop':'population of Canada'},barmode="overlay",log_y=log)
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
-    #fig.show()
-    div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
-    return div
+    
   
 def generate_heatmap(df,colors=None):
     fig = go.Figure(data=go.Heatmap(

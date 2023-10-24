@@ -78,7 +78,7 @@ colors=['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB']
 
 pie = generate_pie(pie_df,colors)
 
-bad_rec_dict,good_rec_dict=house.last_24_effiencies(now)
+bad_rec_dict,good_rec_dict,avg=house.last_24_effiencies(now)
 bad_statements=[
   lambda i,j:"You used {} {}% more than average, remember to turn off lights or running appliances.".format(i,j),
   lambda i,j:"You used {} {}% more than yesterday, try to limit your energy consumption.".format(i,j),
@@ -135,3 +135,4 @@ compare_bar=generate_bar(df_savings_sum,0,1,None,"Predicted energy saved Compari
 # df_savings_dif = df_savings_sum[["time","use_HO"]]
 # df_savings_dif["use_HO"] = df_savings_sum["use_HO"]-df_savings_sum["use_HO_save"]
 # savings_bar=generate_bar(df_savings_dif,0,1,None,"Predicted energy saved")
+ 
