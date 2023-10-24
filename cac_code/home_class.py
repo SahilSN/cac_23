@@ -71,7 +71,35 @@ class House:
             return mask_after
         return self.gen_df.loc[mask_after].time.values.tolist()
         #self.battery+=self.act_gen(str(now))
+    def last_24_effiencies(self,datetime):
+        appliance_list=['Home office','Fridge','Wine cellar', 'Garage door','Microwave','Living room']
+        app_df=self.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
+        app_df = app_df.loc[self.last_24(datetime,True)]
+        app_df=app_df.drop(columns=['time'])
+        value_list=[]
+        for column in app_df:
+            value_list.append(app_df[column].sum())
+        app_df=house.use_df.drop(columns=['time','apparentTemperature','month','day','hour','use_HO'])       
+        avg_list=[]
 
+        for column in app_df:
+            avg_list.append(app_df[column].sum()/503911)
 
+        avg_list=[round(i/sum(avg_list)*100) for i in avg_list]
+        value_list=[round(i/sum(value_list)*100) for i in value_list]
+        good_rec_dict={}
+        bad_rec_dict={}
+        avg=[]
+        for i in range(len(value_list)):
+            diff=value_list[i]-avg_list[i]
+            if diff >= 1:
+                bad_rec_dict[appliance_list[i]]=diff
+                avg.append(avg_list[i])
+            if diff <=-1:
+                good_rec_dict[appliance_list[i]]=diff
+
+        bad_rec_dict=dict(sorted(bad_rec_dict.items(), key=lambda x:x[1], reverse=True))
+        return bad_rec_dict, good_rec_dict,avg
+    
 house=House(0)
 #print(house.last_24(dt.now()))

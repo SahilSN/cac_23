@@ -78,37 +78,16 @@ colors=['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB']
 
 pie = generate_pie(pie_df,colors)
 
-app_df=house.use_df.drop(columns=['time','apparentTemperature','month','day','hour','use_HO'])
-
-avg_list=[]
-for column in app_df:
-  avg_list.append(app_df[column].sum()/503911)
-avg_list=[round(i/sum(avg_list)*100) for i in avg_list]
-value_list=[round(i/sum(value_list)*100) for i in value_list]
-#print(avg_list)
-#print(value_list)
-#print(appliance_list)
-good_rec_dict={}
-bad_rec_dict={}
-for i in range(len(value_list)):
-  diff=value_list[i]-avg_list[i]
-
-  if diff >= 1:
-    bad_rec_dict[appliance_list[i]]=diff
-  if diff <=-1:
-    good_rec_dict[appliance_list[i]]=diff
-
-bad_rec_dict=dict(sorted(bad_rec_dict.items(), key=lambda x:x[1], reverse=True))
-
+bad_rec_dict,good_rec_dict=house.last_24_effiencies(now)
 bad_statements=[
-  lambda i,j:"You used {} [{}%] more than average, remember to turn off lights or running appliances.".format(i,j),
-  lambda i,j:"You used {} [{}%] more than yesterday, try to limit your energy consumption.".format(i,j),
-  lambda i,j:"Next time, try to limit your consumption for the {}, you used it [{}%] more than normal.".format(i,j)
+  lambda i,j:"You used {} {}% more than average, remember to turn off lights or running appliances.".format(i,j),
+  lambda i,j:"You used {} {}% more than yesterday, try to limit your energy consumption.".format(i,j),
+  lambda i,j:"Next time, try to limit your consumption for the {}, you used it {}% more than normal.".format(i,j)
 ]
 good_statements=[
-  lambda i,j:"Great job, you used {} ({}%) less than average.".format(i,j),
-  lambda i,j:"Nice! you used {} ({}%) less than last week.".format(i,j),
-  lambda i,j:"Keep up the good work! {} was used ({}%) less than normal.".format(i,j)
+  lambda i,j:"Great job, you used {} {}% less than average.".format(i,j),
+  lambda i,j:"Nice! you used {} {}% less than last week.".format(i,j),
+  lambda i,j:"Keep up the good work! {} was used {}% less than normal.".format(i,j)
 ]
 rec_list=[]
 for i in bad_rec_dict:
@@ -121,7 +100,7 @@ for i in good_rec_dict:
     rec_list.append(good_statements.pop(0)(i,abs(good_rec_dict[i])))
   except:
     print('not enough good recommendation options')
-print(rec_list)
+
 
 ## second optimization chart
 use_list=df_use[['time',"Home office","Fridge","Wine cellar","Garage door","Microwave","Living room"]]
