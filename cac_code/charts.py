@@ -3,7 +3,7 @@ import plotly.express as px
 import plotly.graph_objs as go
 import pandas as pd
 #from app import app
-from charts_class import generate_line,generate_pie,generate_heatmap
+from charts_class import generate_line,generate_bar,generate_pie,generate_heatmap
 from datetime import datetime as dt, timedelta
 from home_class import house
 import random
@@ -117,3 +117,21 @@ df_corr=df_gen.drop(columns=['time'])
 df_matrix=df_corr.corr()
 colors=[[0,"rgba(125,251,137,255)"],[0.5,'white'],[1.0,"rgba(125,224,251,255)"]]
 corr_heatmap=generate_heatmap(df_matrix,colors)
+
+## Predicted savings line
+print("hello")
+df_savings=df_use.loc[house.next_days(7,True)][["time","use_HO"]]
+df_savings["use_HO_save"] = df_savings["use_HO"]*0.92
+df_savings_sum=df_savings.loc[::60] # gets every hour
+
+for time in df_savings_sum["time"]: # iterates through each hour and appends the sum of usage to the df_savings_sum
+  mask = house.next_hour(time,True)
+  df_savings_sum.loc[df_savings_sum["time"]==time,"use_HO"] = df_savings.loc[mask]["use_HO"].sum()
+  df_savings_sum.loc[df_savings_sum["time"]==time,"use_HO_save"] = df_savings.loc[mask]["use_HO_save"].sum()
+
+compare_bar=generate_bar(df_savings_sum,0,1,None,"Predicted energy saved Comparison")
+
+### Code for bar graph over time of predicted energy saved
+# df_savings_dif = df_savings_sum[["time","use_HO"]]
+# df_savings_dif["use_HO"] = df_savings_sum["use_HO"]-df_savings_sum["use_HO_save"]
+# savings_bar=generate_bar(df_savings_dif,0,1,None,"Predicted energy saved")

@@ -3,6 +3,9 @@ import pandas as pd
 import sys
 
 from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
+
+from stats import est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees
+from charts import compare_bar
 from charts import main_line,pie, cons_over_time, corr_heatmap, rec_list
 
 from datetime import datetime, timedelta
@@ -26,15 +29,15 @@ def index():
 def optimization():
 
     print('optimiiizion')
-
-
     return render_template("optimization.html",pie=pie,rec_list=rec_list,
                             line=cons_over_time)
 
 @app.route("/comparison",methods=['GET','POST'])
 def comparison():
     print('comparison')
-    return render_template("comparison.html")
+    return render_template("comparison.html",compare_bar=compare_bar, est_energy_savings=est_energy_savings,
+                           est_co2e_savings=est_co2e_savings,est_car_miles=est_car_miles,est_plane_miles=est_plane_miles,
+                           est_trees=est_trees)
 
 @app.route("/landing")
 def landing():
