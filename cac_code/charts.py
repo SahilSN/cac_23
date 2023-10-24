@@ -77,7 +77,7 @@ pie_df=pd.DataFrame(data=d)
 colors=['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB']
 
 pie = generate_pie(pie_df,colors)
-
+"""
 bad_rec_dict,good_rec_dict=house.last_24_effiencies(now)
 bad_statements=[
   lambda i,j:"You used {} {}% more than average, remember to turn off lights or running appliances.".format(i,j),
@@ -100,7 +100,7 @@ for i in good_rec_dict:
     rec_list.append(good_statements.pop(0)(i,abs(good_rec_dict[i])))
   except:
     print('not enough good recommendation options')
-
+"""
 
 ## second optimization chart
 use_list=df_use[['time',"Home office","Fridge","Wine cellar","Garage door","Microwave","Living room"]]
