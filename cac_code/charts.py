@@ -77,17 +77,19 @@ pie_df=pd.DataFrame(data=d)
 colors=['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB']
 
 pie = generate_pie(pie_df,colors)
-"""
-bad_rec_dict,good_rec_dict=house.last_24_effiencies(now)
+
+bad_rec_dict,good_rec_dict,avg=house.last_24_effiencies(now)
+#DO NOT TOUCH the () and [] around the percentage values; they are used in jinja (html) for coloring the percentages
+
 bad_statements=[
-  lambda i,j:"You used {} {}% more than average, remember to turn off lights or running appliances.".format(i,j),
-  lambda i,j:"You used {} {}% more than yesterday, try to limit your energy consumption.".format(i,j),
-  lambda i,j:"Next time, try to limit your consumption for the {}, you used it {}% more than normal.".format(i,j)
+  lambda i,j:"You used {} [{}%] more than average, remember to turn off lights or running appliances.".format(i,j),
+  lambda i,j:"You used {} [{}%] more than yesterday, try to limit your energy consumption.".format(i,j),
+  lambda i,j:"Next time, try to limit your consumption for the {}, you used it [{}%] more than normal.".format(i,j)
 ]
 good_statements=[
-  lambda i,j:"Great job, you used {} {}% less than average.".format(i,j),
-  lambda i,j:"Nice! you used {} {}% less than last week.".format(i,j),
-  lambda i,j:"Keep up the good work! {} was used {}% less than normal.".format(i,j)
+  lambda i,j:"Great job, you used {} ({}%) less than average.".format(i,j),
+  lambda i,j:"Nice! you used {} ({}%) less than last week.".format(i,j),
+  lambda i,j:"Keep up the good work! {} was used ({}%) less than normal.".format(i,j)
 ]
 rec_list=[]
 for i in bad_rec_dict:
@@ -135,3 +137,4 @@ compare_bar=generate_bar(df_savings_sum,0,1,None,"Predicted energy saved Compari
 # df_savings_dif = df_savings_sum[["time","use_HO"]]
 # df_savings_dif["use_HO"] = df_savings_sum["use_HO"]-df_savings_sum["use_HO_save"]
 # savings_bar=generate_bar(df_savings_dif,0,1,None,"Predicted energy saved")
+ 
