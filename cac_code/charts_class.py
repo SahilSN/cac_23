@@ -31,14 +31,14 @@ def generate_line(df, x_col, y_col_s, y_col_e, title,colors=None,y_range=None):
         ticks='inside',
         #showline=True,
         #linecolor='black',
-        gridcolor='white'
+        gridcolor='#39353d'
     )  
     plotly_fig.update_yaxes(
         #mirror=True,
         ticks='inside',
-        #showline=True,
-        #linecolor='black',
-        gridcolor='white'
+        showline=True,
+        linecolor='white',
+        gridcolor='#39353d'
     )
     #plotly_fig.show()
     
@@ -76,6 +76,34 @@ def generate_bar(df, x_col, y_col_s, y_col_e, title, log=False):
     #zeros = pd.DataFrame(0, index=np.arange(len(df)), columns="zero")["zero"]
     fig = px.bar(df, x=df.columns[x_col], y=df.columns[y_col_s:],
              labels={'pop':'population of Canada'},barmode="overlay",log_y=log)
+    fig.update_layout(
+        plot_bgcolor='rgba(36,37,45,255)',
+        paper_bgcolor='rgba(36,37,45,255)',
+        font_color="white",
+        title_font_color="white",
+        legend_title_font_color="white",
+        
+        
+        
+    )
+    fig.update_xaxes(
+        #mirror=True,
+        ticks='inside',
+        #showline=True,
+        #linecolor='black',
+        gridcolor='#39353d'
+    )  
+    fig.update_yaxes(
+        #mirror=True,
+        ticks='inside',
+        showline=True,
+        linecolor='white',
+        gridcolor='#39353d'
+    )
+    fig.update_traces(
+        marker_line_width = 0,
+    )
+    fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
     

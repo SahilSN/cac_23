@@ -145,7 +145,7 @@
 
 <body>
   <div>
-    <link href="../static/index.css" rel="stylesheet" />
+    <link href="../static/comparison.css" rel="stylesheet" />
 
     <div class="comparison-container">
       <nav class="comparison-centered">
@@ -176,48 +176,66 @@
           <!-- For Loading Charts -->
 
           <!-- Line graph even listener + div -->
-          
-          <script type="text/javascript">
-            window.addEventListener('load', function () {
-              var graph = ('{{ compare_bar }}');
-              createGraph(graph, "compare bar");
-            })
-          </script>
-          <div id="bar"></div>
+          <div class ="comparison-container01">
+           
+            <script type="text/javascript">
+              window.addEventListener('load', function () {
+                var graph = ('{{ bar }}');
+                createGraph(graph, "bar");
+              })
+            </script>
+            <div id="bar" class="comparison-image"></div>
+            
+          </div>
+          <h1 class = "comparison-text06">What does this mean?</h2>
           <div class = "comparison-container02">
             <div class="comparison-number">
-              <h1 class="comparison-text08">Estimated Energy Saved</h1>
-              <h1 class="comparison-text09">{{est_energy_savings}}</h1>
+              <img class="icon" src="../static/images/energy-icon.png" alt="energy-icon">
+              <h1 class="comparison-text11">{{est_energy_savings}}</h1>
+              <h1 class="comparison-text10">kW of Energy <br>Saved</h1>
+              
               <!--<h1 class="comparison-text10">+15%</h1>-->
             </div>
-          </div>
-          <div class = "comparison-container03">
+
             <div class="comparison-number">
-              <h1 class="comparison-text08">Estimated Energy Saved</h1>
-              <h1 class="comparison-text09">{{est_energy_savings}}</h1>
+              <img class="icon" src="../static/images/co2-icon.png" alt="co2-icon">
+              <h1 class="comparison-text11">{{est_co2e_savings}}</h1>
+              <h1 class="comparison-text10">lbs of CO2<br> Saved</h1>
+              
               <!--<h1 class="comparison-text10">+15%</h1>-->
             </div>
           </div>
-          <div class="comparison-container01">
+          <h1  class = "comparison-text06">Or the equivalent of: </h2>
+          <div class="comparison-container03">
 
             <div class="comparison-number1">
-              <h1 class="comparison-text08">CO2</h1>
-              <h1 class="comparison-text09">{{est_co2e_savings}}</h1>
+              <img class="icon02" src="../static/images/car-icon.png" alt="car-icon">
+              <h1 class="comparison-text09">{{est_car_miles}}</h1>
+              <h1 class="comparison-text08">Car Miles</h1>
+              
               <!--<h1 class="comparison-text13">+15%</h1>-->
             </div>
             <div class="comparison-number2">
-              <h1 class="comparison-text08">Car Miles</h1>
-              <h1 class="comparison-text09">{{est_car_miles}}</h1>
+              <img class="icon02" src="../static/images/plane-icon.png" alt="plane-icon">
+              <h1 class="comparison-text09">{{est_plane_miles}}</h1>
+              <h1 class="comparison-text08">Plane Miles</h1>
+              
               <!--<h1 class="comparison-text16">+15%</h1>-->
             </div>
             <div class="comparison-number3">
-              <h1 class="comparison-text08">Plane Miles</h1>
-              <h1 class="comparison-text09">{{est_plane_miles}}</h1>
+              <img alt="tree-icon" src="../static/images/tree-icon.png" class="icon02">
+              <h1 class="comparison-text09">{{est_trees}}</h1>
+              <h1 class="comparison-text08">Trees</h1>
+              
+              
               <!--<h1 class="comparison-text19">+15%</h1>-->
             </div>
+            
             <div class="comparison-number4">
-              <h1 class="comparison-text08">Trees</h1>
-              <h1 class="comparison-text09">{{est_trees}}</h1>
+              <img class="icon02" src="../static/images/car-icon.png" alt="tree-icon">
+              <h1 class="comparison-text09">1231213</h1>
+              <h1 class="comparison-text08">Money</h1>
+              
               <!--<h1 class="comparison-text22">+15%</h1>-->
             </div>
           </div>

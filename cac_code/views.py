@@ -35,7 +35,7 @@ def optimization():
 @app.route("/comparison",methods=['GET','POST'])
 def comparison():
     print('comparison')
-    return render_template("comparison.html",compare_bar=compare_bar, est_energy_savings=est_energy_savings,
+    return render_template("comparison.html",bar=compare_bar, est_energy_savings=est_energy_savings,
                            est_co2e_savings=est_co2e_savings,est_car_miles=est_car_miles,est_plane_miles=est_plane_miles,
                            est_trees=est_trees)
 

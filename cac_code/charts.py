@@ -136,4 +136,3 @@ compare_bar=generate_bar(df_savings_sum,0,1,None,"Predicted energy saved Compari
 # df_savings_dif = df_savings_sum[["time","use_HO"]]
 # df_savings_dif["use_HO"] = df_savings_sum["use_HO"]-df_savings_sum["use_HO_save"]
 # savings_bar=generate_bar(df_savings_dif,0,1,None,"Predicted energy saved")
- 
