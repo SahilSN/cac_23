@@ -80,6 +80,7 @@ pie = generate_pie(pie_df,colors)
 
 bad_rec_dict,good_rec_dict,avg=house.last_24_effiencies(now)
 #DO NOT TOUCH the () and [] around the percentage values; they are used in jinja (html) for coloring the percentages
+
 bad_statements=[
   lambda i,j:"You used {} [{}%] more than average, remember to turn off lights or running appliances.".format(i,j),
   lambda i,j:"You used {} [{}%] more than yesterday, try to limit your energy consumption.".format(i,j),
@@ -101,7 +102,7 @@ for i in good_rec_dict:
     rec_list.append(good_statements.pop(0)(i,abs(good_rec_dict[i])))
   except:
     print('not enough good recommendation options')
-
+"""
 
 ## second optimization chart
 use_list=df_use[['time',"Home office","Fridge","Wine cellar","Garage door","Microwave","Living room"]]
