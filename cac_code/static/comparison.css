@@ -15,7 +15,6 @@
   box-sizing: initial;
   align-items: center;
   padding-left: var(--dl-space-space-oneandhalfunits);
-  border-radius: 50px;
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: row;
   justify-content: space-between;
@@ -151,8 +150,9 @@
   display: flex;
   position: relative;
   align-items: center;
-  padding: 5px;
+  padding: 25px;
   flex-direction: column;
+  border-radius: 10px;
 }
 .comparison-text08 {
   color: rgb(0, 0, 0);
@@ -205,55 +205,57 @@
 }
 
 .comparison-number1 {
-  margin: 20px;
+  margin: 5px;
   margin-top: 3px;
   width: 15%;
   background-color: #00e5af;
   display: flex;
   position: relative;
   align-items: center;
-  padding: 10px;
+  padding: 25px;
   flex-direction: column;
+  border-radius: 10px;
 }
 
 
 
 .comparison-number2 {
-  margin: 20px;
+  margin: 5px;
   margin-top: 3px;
   width: 15%;
   background-color: #00d3c3;
   display: flex;
   position: relative;
   align-items: center;
-  padding: 10px;
+  padding: 25px;
   flex-direction: column;
-
-
+  border-radius: 10px;
 }
 
 .comparison-number3 {
-  margin: 20px;
+  margin: 5px;
   margin-top: 3px;
   width: 15%;
   background-color: #00bedd;
   display: flex;
   position: relative;
   align-items: center;
-  padding: 10px;
+  padding: 25px;
   flex-direction: column;
+  border-radius: 10px;
 }
 
 .comparison-number4 {
-  margin: 20px;
+  margin: 5px;
   margin-top: 3px;
   width: 15%;
   background-color: #00a2fe;
   display: flex;
   position: relative;
   align-items: center;
-  padding: 10px;
+  padding: 25px;
   flex-direction: column;
+  border-radius: 10px;
 }
 .comparison-text20 {
   color: rgb(0, 0, 0);

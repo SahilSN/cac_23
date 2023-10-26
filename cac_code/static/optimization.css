@@ -12,11 +12,11 @@
   width: 100%;
   height: 63px;
   display: flex;
+  max-width: 100%;
   align-self: center;
   box-sizing: initial;
   align-items: center;
   padding-left: var(--dl-space-space-oneandhalfunits);
-  border-radius: 50px;
   padding-right: var(--dl-space-space-oneandhalfunits);
   flex-direction: row;
   justify-content: space-between;
@@ -26,7 +26,6 @@
 .home1-left {
   height: 100%;
   display: flex;
-  position: relative;
   align-items: center;
   padding-top: 38px;
   flex-direction: row;
@@ -34,23 +33,17 @@
 }
 
 .home1-logo {
-  width: 185px;
-  margin-left: var(--dl-space-space-halfunit);
+  width: 200px;
 }
-.home1-links {
+.home-links {
   display: flex;
   align-items: center;
-  margin-left: 33px;
   flex-direction: row;
 }
-.home1-right {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding-top: var(--dl-space-space-oneandhalfunits);
-  flex-direction: row;
-  padding-bottom: var(--dl-space-space-oneandhalfunits);
+.home-links span{
+  margin-left: 50px;
 }
+
 .home1-get-started {
   cursor: pointer;
   display: flex;
@@ -432,7 +425,7 @@ ul{
 }
 
 .highlight-good{
-  color: greenyellow;
+  color: rgb(100, 200, 100);
 }
 
 .highlight-bad{

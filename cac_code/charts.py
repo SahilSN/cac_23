@@ -102,7 +102,6 @@ for i in good_rec_dict:
     rec_list.append(good_statements.pop(0)(i,abs(good_rec_dict[i])))
   except:
     print('not enough good recommendation options')
-"""
 
 ## second optimization chart
 use_list=df_use[['time',"Home office","Fridge","Wine cellar","Garage door","Microwave","Living room"]]
