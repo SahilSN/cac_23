@@ -4,6 +4,8 @@ df_use=house.use_df
 df_gen=house.gen_df
 now=house.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
 last_hour = (house.datetime - timedelta(hours = 1)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+print('test')
+print(df_use)
 datetimes=df_use.time.values.tolist()
 x=datetimes.index(now)
 y=x
