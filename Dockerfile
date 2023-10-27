@@ -6,6 +6,7 @@ WORKDIR /python-docker
 
 COPY requirements.txt requirements.txt
 RUN apt-get update && apt-get install -y libgomp1
+RUN pip3 install pandas
 RUN pip3 install -r requirements.txt
 
 COPY . .
