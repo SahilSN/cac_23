@@ -65,7 +65,7 @@ df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "G
 
 df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*4)
 hours=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0]
-scalars=[0.3,0.3,0.3,0.3,0.5,0.7,0.7,0.7,0.7,0.5,0.3,0.2,0.1,0.1,0.1,0.2,0.5,0.9,1,1,1,0.7,0.3,0.3]
+scalars=[0.2,0.2,0.2,0.2,0.4,0.6,0.6,0.6,0.6,0.4,0.3,0.2,0.1,0.1,0.1,0.2,0.4,0.7,0.9,0.9,0.9,0.6,0.3,0.2]
 for i in range(len(hours)):
     df_use.loc[df_use['hour']==hours[i],'use_HO'] = df_use.loc[df_use['hour']==hours[i],'use_HO']*scalars[i]
 
