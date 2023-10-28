@@ -40,7 +40,7 @@ def generate_line(df, x_col, y_col_s, y_col_e, title,colors=None,y_range=None):
         linecolor='white',
         gridcolor='#39353d'
     )
-    #plotly_fig.show()
+    plotly_fig.show()
     
     div = plotly.offline.plot(plotly_fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
@@ -103,7 +103,7 @@ def generate_bar(df, x_col, y_col_s, y_col_e, title, log=False):
     fig.update_traces(
         marker_line_width = 0,
     )
-    fig.show()
+    #fig.show()
     div = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
     
