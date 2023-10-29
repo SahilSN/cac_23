@@ -2,15 +2,15 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import sys
 
-#from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
+from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
 
-#from stats import est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees
-#from charts import compare_bar
-#from charts import main_line,pie, cons_over_time, corr_heatmap, rec_list
+from stats import est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees
+from charts import compare_bar
+from charts import main_line,pie, cons_over_time, corr_heatmap, rec_list
 
 from stats import get_current_usages
 
-from gpt_model import generate_recommendations,create_msgs
+#from gpt_model import generate_recommendations,create_msgs
 
 from datetime import datetime, timedelta
 
@@ -24,11 +24,11 @@ def index():
     
 
     print('indexxx')
-    return render_template("index.html")
-    # return render_template("index.html", 
-    #                        graph = main_line, pie=pie, tg=total_generated, tc=total_consumed,
-    #                        bl=battery_left, ge=generation_efficiency, ha=hour_avg, heatmap=corr_heatmap     
-    #                        )
+    #return render_template("index.html")
+    return render_template("index.html", 
+                            graph = main_line, pie=pie, tg=total_generated, tc=total_consumed,
+                            bl=battery_left, ge=generation_efficiency, ha=hour_avg, heatmap=corr_heatmap     
+                            )
 
 @app.route("/optimization",methods=['GET','POST'])
 def optimization():
@@ -43,7 +43,7 @@ def comparison():
     return render_template("comparison.html",bar=compare_bar, est_energy_savings=est_energy_savings,
                            est_co2e_savings=est_co2e_savings,est_car_miles=est_car_miles,est_plane_miles=est_plane_miles,
                            est_trees=est_trees)
-
+""" 
 @app.route("/recommendations",methods=['GET','POST'])
 def recommendations():
     if request.method == "GET":
@@ -122,4 +122,4 @@ def genrec():
     roles.append("assistant")
     contents.append(content)
 
-    return jsonify({"error": "0", "roles": roles, "contents": contents})
+    return jsonify({"error": "0", "roles": roles, "contents": contents}) """
