@@ -76,6 +76,7 @@ class House:
         appliance_list=['Home office','Fridge','Wine cellar', 'Garage door','Microwave','Living room']
         app_df=self.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
         app_df = app_df.loc[self.last_24(datetime,True)]
+        print(app_df)
         app_df=app_df.drop(columns=['time'])
         value_list=[]
         for column in app_df:
@@ -84,7 +85,7 @@ class House:
         avg_list=[]
 
         for column in app_df:
-            avg_list.append(app_df[column].sum()/503911)
+            avg_list.append(app_df[column].sum())
 
         avg_list=[round(i/sum(avg_list)*100) for i in avg_list]
         value_list=[round(i/sum(value_list)*100) for i in value_list]
@@ -101,6 +102,26 @@ class House:
 
         bad_rec_dict=dict(sorted(bad_rec_dict.items(), key=lambda x:x[1], reverse=True))
         return bad_rec_dict, good_rec_dict,avg
+
+    def last_24_efficiencies(self,datetime): # NEW FUNCTION THAT RETURNS THE PERCENTAGES LIST
+        appliance_list=['Home office','Fridge','Wine cellar', 'Garage door','Microwave','Living room']
+        app_df=self.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
+        app_df = app_df.loc[self.last_24(datetime,True)]
+        print(app_df)
+        app_df=app_df.drop(columns=['time'])
+        value_list=[]
+        for column in app_df:
+            value_list.append(app_df[column].sum())
+        app_df=house.use_df.drop(columns=['time','apparentTemperature','month','day','hour','use_HO'])       
+        avg_list=[]
+
+        for column in app_df:
+            avg_list.append(app_df[column].sum())
+
+        avg_list=[round(i/sum(avg_list)*100) for i in avg_list]
+        value_list=[round(i/sum(value_list)*100) for i in value_list]
+        
+        return appliance_list, value_list, avg_list
 
     def next_days(self,days,exception=False): #predicted hourly
         now = self.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-5]+'00:00'
@@ -121,5 +142,7 @@ class House:
 
     
 house=House(0)
+now = dt.now().replace(microsecond=0).replace(second=0)
+bad_rec_dict,good_rec_dict,avg=house.last_24_effiencies(now)
 #print(house.last_24(dt.now()))
 #print(house.next_days(31,True))

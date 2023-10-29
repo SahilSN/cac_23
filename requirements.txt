@@ -6,4 +6,5 @@ numpy
 matplotlib
 datetime
 plotly
-
+openai
+python-dotenv
