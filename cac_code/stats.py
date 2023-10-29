@@ -1,8 +1,9 @@
 from home_class import house
-from datetime import timedelta
+from datetime import datetime as dt, timedelta
 df_use=house.use_df
 df_gen=house.gen_df
 now=house.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
+now2 = dt.now().replace(microsecond=0).replace(second=0) # should be same as now
 last_hour = (house.datetime - timedelta(hours = 1)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
 print('test')
 print(df_use)
@@ -73,6 +74,24 @@ est_co2e_savings = round(est_co2e_savings)
 est_car_miles = round(est_car_miles)
 est_plane_miles = round(est_plane_miles)
 est_trees = round(est_trees)
+
+def get_current_usages():
+  now2 = dt.now().replace(microsecond=0).replace(second=0) # should be same as now
+  appliance_list, value_list, avg_list = house.last_24_efficiencies(now2)
+  today = {}
+  yesterday = {}
+  for index, appliance in enumerate(appliance_list):
+    today[appliance] = value_list[index]
+    yesterday[appliance] = avg_list[index]
+  print(value_list)
+  print(avg_list)
+  msg = "Percentage of energy usage by location in the format {Location: Percentage} for today is " + str(today) + ". Percentage of energy usage by location in the format {Location: Percentage} for yesterday is " + str(yesterday) + ". Do not repeat any advice that you have given me in the past."
+
+  return msg
+  # Percentage of energy usage by location in the format {Location: Percentage} for today is 
+  # {Home office: 25, Fridge: 33, Wine cellar: 17, Garage door: 9, Microwave: 5, Living room: 12}. 
+  # Percentage of energy usage by location in the format {Location: Percentage} for yesterday is 
+  # {Home office: 33, Fridge: 26, Wine cellar: 17, Garage door: 6, Microwave: 4, Living room: 14}.
 
 
 # finds the estimated money saved by user based on the energy saved
