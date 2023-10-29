@@ -2,13 +2,10 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import sys
 
-from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg
+from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg,est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees,get_current_usages
 
-from stats import est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees
-from charts import compare_bar
-from charts import main_line,pie, cons_over_time, corr_heatmap#, rec_list
+from charts import compare_bar,main_line,pie, cons_over_time, corr_heatmap#, rec_list
 
-from stats import get_current_usages
 
 from gpt_model import generate_recommendations,create_msgs
 
