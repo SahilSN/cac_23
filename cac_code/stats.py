@@ -6,7 +6,7 @@ now=house.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
 now2 = dt.now().replace(microsecond=0).replace(second=0) # should be same as now
 last_hour = (house.datetime - timedelta(hours = 1)).strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
 print('test')
-print(df_use)
+#print(df_use)
 datetimes=df_use.time.values.tolist()
 x=datetimes.index(now)
 y=x
@@ -22,11 +22,17 @@ total_generated=0
 total_consumed=0
 battery_left=0
 generation_efficiency=0
- 
+
+
+
+mask_before = (df_gen['time'] <= now)
+avg_list = df_gen.loc[mask_before].gen_Sol.values.tolist()
+avg=sum(avg_list)/len(avg_list)
+
 for datetime in period:
   total_generated += house.act_gen(datetime)[0]
   total_consumed += house.act_cons(datetime)[0]
-  generation_efficiency=((house.act_gen(datetime)/house.pred_gen(datetime))*100)[0]
+generation_efficiency=((house.act_gen(now)[0]/avg)*100)
 hour_avg=((total_consumed)/len(period))*60
 
 num_hours = len(period)/60

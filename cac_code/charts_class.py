@@ -24,6 +24,8 @@ def generate_line(df, x_col, y_col_s, y_col_e, title,colors=None,y_range=None):
         font_color="white",
         title_font_color="white",
         legend_title_font_color="white",
+        yaxis_title="Energy in kW",
+        
         yaxis_range=y_range
     )
     plotly_fig.update_xaxes(
@@ -40,7 +42,7 @@ def generate_line(df, x_col, y_col_s, y_col_e, title,colors=None,y_range=None):
         linecolor='white',
         gridcolor='#39353d'
     )
-    plotly_fig.show()
+    #plotly_fig.show()
     
     div = plotly.offline.plot(plotly_fig, include_plotlyjs=False, output_type='div', config={'displayModeBar': False})
     return div
@@ -120,7 +122,7 @@ def generate_heatmap(df,colors=None):
                 colorbar_ticklen=3,
     ))
     fig.update_layout(
-                title_text='<b>Correlation Matrix (cont. features)<b>',
+                title_text='Correlation Matrix (cont. features)',
                 title_x=0.5,
                 titlefont={'size': 24},
                 width=550, height=550,

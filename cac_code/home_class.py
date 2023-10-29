@@ -76,7 +76,7 @@ class House:
         appliance_list=['Home office','Fridge','Wine cellar', 'Garage door','Microwave','Living room']
         app_df=self.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
         app_df = app_df.loc[self.last_24(datetime,True)]
-        print(app_df)
+        #print(app_df)
         app_df=app_df.drop(columns=['time'])
         value_list=[]
         for column in app_df:
@@ -107,7 +107,7 @@ class House:
         appliance_list=['Home office','Fridge','Wine cellar', 'Garage door','Microwave','Living room']
         app_df=self.use_df.drop(columns=['apparentTemperature','month','day','hour','use_HO'])
         app_df = app_df.loc[self.last_24(datetime,True)]
-        print(app_df)
+        #print(app_df)
         app_df=app_df.drop(columns=['time'])
         value_list=[]
         for column in app_df:

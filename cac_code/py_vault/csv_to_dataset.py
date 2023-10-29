@@ -63,12 +63,15 @@ df_gen=df.drop(columns=["Dishwasher", "Home office", "Fridge", "Wine cellar", "G
                         "Microwave", "Living room", "Furnace", "Kitchen","year","day","weekofyear","minute","timing"
 ,"use_HO"])
 
-df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*0.3)
+#df_gen['gen_Sol'] = df_gen['gen_Sol'].apply(lambda x: x*0.5)
+
 hours=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0]
-scalars=[0.002,0.002,0.002,0.002,0.004,0.006,0.006,0.006,0.006,0.004,0.003,0.002,0.001,0.001,0.001,0.002,0.004,0.007,0.009,0.009,0.009,0.006,0.003,0.002]
+#scalars=[0.005,0.005,0.005,0.005,0.006,0.008,0.008,0.008,0.008,0.006,0.005,0.005,0.005,0.005,0.005,0.005,0.006,0.007,0.009,0.009,0.009,0.006,0.005,0.005]
+scalars=[0.08,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.007,0.007,0.007,0.008,0.008,0.008,0.007,0.008,0.008,0.008,0.008,0.008,0.008,0.008,0.008]
+
 for i in range(len(hours)):
     df_use.loc[df_use['hour']==hours[i],'use_HO'] = df_use.loc[df_use['hour']==hours[i],'use_HO']*scalars[i]
-
+    df_gen.loc[df_gen['hour']==hours[i],'gen_Sol'] = df_gen.loc[df_gen['hour']==hours[i],'gen_Sol']*0.1
 
 df_use.to_csv('cac_code/csv_data/use_HO.csv',index=False)
 df_gen.to_csv('cac_code/csv_data/gen_sol.csv',index=False)

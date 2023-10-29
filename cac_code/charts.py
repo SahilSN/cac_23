@@ -28,33 +28,36 @@ main_line_df["battery"] = df_battery["battery"]
 #print(main_line_df)
 ### Filters results to past 12 hours
 #(df_gen['time'] >= before_12_hr) & (df_gen['time'] <= now)
+step=10
+
+
 main_line_filter_df_ = main_line_df.loc[house.last_12(now,True)]
 main_line_filter_df_before=pd.DataFrame()
-main_line_filter_df_before["Time"]=main_line_filter_df_.Time.values.tolist()[::10]
+main_line_filter_df_before["Time"]=main_line_filter_df_.Time.values.tolist()[::step]
 
 use_list=main_line_filter_df_["Energy Consumption"].values.tolist()
-use_list=[sum(use_list[i:i + 10]) for i in range(0, len(use_list), 10)]
+use_list=[sum(use_list[i:i + step]) for i in range(0, len(use_list), step)]
 main_line_filter_df_before["Energy Consumption"] = use_list
 
 gen_list=main_line_filter_df_["Energy Generation"].values.tolist()
-gen_list=[sum(gen_list[i:i + 10]) for i in range(0, len(gen_list), 10)]
+gen_list=[sum(gen_list[i:i + step]) for i in range(0, len(gen_list), step)]
 main_line_filter_df_before["Energy Generation"]=gen_list
 
 bat_list=main_line_filter_df_['battery']
-bat_list=[sum(bat_list[i:i + 10]) for i in range(0, len(bat_list), 10)]
+bat_list=[sum(bat_list[i:i + step]) for i in range(0, len(bat_list), step)]
 main_line_filter_df_before["battery"]=bat_list
 
 
 ### time_list for next 12 hours
 time_list=house.next_12()
-pred_cons_list=[house.pred_cons(t) for t in time_list]
-pred_gen_list=[house.pred_gen(t) for t in time_list]
+pred_cons_list=[house.act_cons(t)[0] for t in time_list]
+pred_gen_list=[house.act_gen(t)[0] for t in time_list]
 
 from numpy import nan 
 
-time_list=time_list[::10]
-pred_gen_list = [sum(pred_gen_list[i:i + 10]) for i in range(0, len(pred_gen_list), 10)]
-pred_cons_list = [sum(pred_cons_list[i:i + 10]) for i in range(0, len(pred_cons_list), 10)]
+time_list=time_list[::step]
+pred_gen_list = [sum(pred_gen_list[i:i + step]) for i in range(0, len(pred_gen_list), step)]
+pred_cons_list = [sum(pred_cons_list[i:i + step]) for i in range(0, len(pred_cons_list), step)]
 
 battery=[]
 df_after=pd.DataFrame({
@@ -71,7 +74,8 @@ line_df=line_df.drop(columns=["battery"])
 ### Generates line graph with the parameters
 main_line = generate_line(line_df, 0, 1, None, 
                           "Energy Consumption, Generation, and Battery 12 Hours Before and After",
-                          ["#7DA1FB","#7DFB89"]
+                          ["#7DA1FB","#7DFB89"],
+                          [0,0.2]
                         )
 
 #pie chart (distribution of consumption by appliance last twelve hours)
@@ -126,7 +130,7 @@ use_list=df_use[['time',"Home office","Fridge","Wine cellar","Garage door","Micr
 use_list=use_list.loc[house.last_12(now,True)]
 #(print(use_list)
 cons_over_time=generate_line(use_list,0,1,None,"Consumption Over Last Twelve Hours",
-              ['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB'],[0,0.5])
+              ['#7DFB89','#7DFBD7','#7DE0FB','#7DA1FB','#987DFB','#D77DFB'],[0,0.15])
 
 
 
