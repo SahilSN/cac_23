@@ -28,10 +28,17 @@ for datetime in period:
   generation_efficiency=((house.act_gen(datetime)/house.pred_gen(datetime))*100)[0]
 hour_avg=((total_consumed)/len(period))*60
 
-total_generated=round(total_generated)
-total_consumed=round(total_consumed)
+num_hours = len(period)/60
+print(num_hours)
+
+total_generated *= num_hours
+total_consumed *= num_hours
+
+total_generated=round(total_generated, 3)
+total_consumed=round(total_consumed, 3)
 generation_efficiency=round(generation_efficiency)
-hour_avg=round(hour_avg)
+hour_avg=round(hour_avg, 3)
+
 
 ### Note: Same processing as in charts.py -- is there a way to make this more efficient?
 ## Predicted savings line
