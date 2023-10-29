@@ -20,33 +20,30 @@ df_battery = pd.read_csv("cac_code/csv_data/battery_data.csv",)
 
 #df_battery["battery"]=df_battery["battery"].astype(float)
 # Creates Main Line Graph
-
-
-time_list=df_gen.time.values.tolist()
-time_list=time_list[::5]
-main_line_df=pd.DataFrame()
-print(len(time_list))
-main_line_df['Time']=time_list
-
-gen_list=df_gen.gen_Sol.values.tolist()
-gen_list=[sum(gen_list[i:i + 5]) for i in range(0, len(gen_list), 5)]
-
-main_line_df["Energy Generation"]=gen_list
-
-use_list=df_use["use_HO"].values.tolist()
-use_list=[sum(use_list[i:i + 5]) for i in range(0, len(use_list), 5)]
-
-main_line_df["Energy Consumption"] = use_list
-
-bat_list=df_battery['battery']
-gen_list=[sum(bat_list[i:i + 5]) for i in range(0, len(bat_list), 5)]
-
+main_line_df = df_gen[["time", "gen_Sol"]]
+main_line_df=main_line_df.rename(columns={"time": "Time", "gen_Sol": "Energy Generation"})
+main_line_df["Energy Consumption"] = df_use["use_HO"]
 main_line_df["battery"] = df_battery["battery"]
 #print(main_line_df.info())
 #print(main_line_df)
 ### Filters results to past 12 hours
 #(df_gen['time'] >= before_12_hr) & (df_gen['time'] <= now)
-main_line_filter_df_before = main_line_df.loc[house.last_12(now,True)]
+main_line_filter_df_ = main_line_df.loc[house.last_12(now,True)]
+main_line_filter_df_before=pd.DataFrame()
+main_line_filter_df_before["Time"]=main_line_filter_df_.Time.values.tolist()[::10]
+
+use_list=main_line_filter_df_["Energy Consumption"].values.tolist()
+use_list=[sum(use_list[i:i + 10]) for i in range(0, len(use_list), 10)]
+main_line_filter_df_before["Energy Consumption"] = use_list
+
+gen_list=main_line_filter_df_["Energy Generation"].values.tolist()
+gen_list=[sum(gen_list[i:i + 10]) for i in range(0, len(gen_list), 10)]
+main_line_filter_df_before["Energy Generation"]=gen_list
+
+bat_list=main_line_filter_df_['battery']
+bat_list=[sum(bat_list[i:i + 10]) for i in range(0, len(bat_list), 10)]
+main_line_filter_df_before["battery"]=bat_list
+
 
 ### time_list for next 12 hours
 time_list=house.next_12()
@@ -55,9 +52,9 @@ pred_gen_list=[house.pred_gen(t) for t in time_list]
 
 from numpy import nan 
 
-time_list=time_list[::5]
-pred_gen_list = [sum(pred_gen_list[i:i + 5]) for i in range(0, len(pred_gen_list), 5)]
-pred_cons_list = [sum(pred_cons_list[i:i + 5]) for i in range(0, len(pred_cons_list), 5)]
+time_list=time_list[::10]
+pred_gen_list = [sum(pred_gen_list[i:i + 10]) for i in range(0, len(pred_gen_list), 10)]
+pred_cons_list = [sum(pred_cons_list[i:i + 10]) for i in range(0, len(pred_cons_list), 10)]
 
 battery=[]
 df_after=pd.DataFrame({
