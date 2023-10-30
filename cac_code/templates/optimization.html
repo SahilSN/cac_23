@@ -1,64 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Optimization</title>
-    <meta property="og:title" content="Optimization" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-        <!-- Scripts needed to load charts -->
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
+<head>
+  <title>Optimization</title>
+  <meta property="og:title" content="Optimization" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <!-- Scripts needed to load charts -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.min.js"></script>
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: #23242c;
-        background-color: #23242c;
+  <style data-tag="reset-style-sheet">
+    html {
+      line-height: 1.15;
+    }
 
-      }
-    </style>
-    <link rel="stylesheet"
+    body {
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+    }
+
+    p,
+    li,
+    ul,
+    pre,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    figure,
+    blockquote,
+    figcaption {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      background-color: transparent;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    button,
+    select {
+      text-transform: none;
+    }
+
+    button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"] {
+      -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    button:-moz-focus,
+    [type="button"]:-moz-focus,
+    [type="reset"]:-moz-focus,
+    [type="submit"]:-moz-focus {
+      outline: 1px dotted ButtonText;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    input {
+      padding: 2px 4px;
+    }
+
+    img {
+      display: block;
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+  </style>
+  <style data-tag="default-style-sheet">
+    html {
+      font-family: Inter;
+      font-size: 16px;
+    }
+
+    body {
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.15;
+      color: #23242c;
+      background-color: #23242c;
+
+    }
+  </style>
+  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
     data-tag="font" />
-    <link
-      rel="stylesheet"
-      data-tag="font"
-    />
-    <link rel="stylesheet" href="../static/style.css" />
-  </head>
-  <body>
-    <div>
-      <link href="../static/optimization.css" rel="stylesheet" />
+  <link rel="stylesheet" data-tag="font" />
+  <link rel="stylesheet" href="../static/style.css" />
+</head>
 
-      <div class="home1-container">
-        <nav class="home1-centered">
-          <div class="home1-left">
-            <img alt="pastedImage" src="../static/images/cac_logo.jpg" class="home1-logo" />
-            <div class="home-links">
-              <span><a href="/dashboard">Dashboard</a></span>
-              <span><a href="/optimization">Optimization</a></span>
-              <span><a href="/comparison">Comparison</a></span>
-            </div>
+<body>
+  <div id="app">
+    <link href="../static/optimization.css" rel="stylesheet" />
+
+    <div class="home1-container">
+      <nav class="home1-centered">
+        <div class="home1-left">
+          <img alt="pastedImage" src="../static/images/cac_logo.jpg" class="home1-logo" />
+          <div class="home-links">
+            <span><a href="/dashboard">Dashboard</a></span>
+            <span><a href="/optimization">Optimization</a></span>
+            <span><a href="/comparison">Comparison</a></span>
           </div>
-          <div class="home1-right">
-          </div>
-        </nav>
-          <!-- <section class="home1-hero">
+        </div>
+        <div class="home1-right">
+        </div>
+      </nav>
+      <!-- <section class="home1-hero">
             <img
               alt="pastedImage"
               src="../static/images/parallax_solar_panels.png"
@@ -73,79 +161,118 @@
             <img class="solarpanelbottom" src="../static/images/solar_panel_bottom.png">
           </section> -->
 
-          <section id="a">
-            <img src="../static/images/parallax_solar_panels.jpg" id="background">
-            <h1 class="home1-text04" id="txt">Optimization</h1>
-            <a href="#" id="btn" onclick="transition()">Explore</a>
-            <!-- <img src="../static/images/solar_panel_bottom.png" id="panels"> -->
-          </section>
-          <div class="content" id="content">
-            <script src="../static/js/loadCharts.js"></script>
-            <script src="../static/js/slideshow.js" defer></script>
-            <div class="home1-container1">
-              <div class="home1-container2">
-                <script type="text/javascript">
-                  window.addEventListener('load', function () {
-                    var graph = ('{{ pie }}');
-                    createGraph(graph, "pie");
-                  })
-                </script>
-                <div id="pie" class="home1-image1"></div>
-                <!-- <img
+      <section id="a">
+        <img src="../static/images/parallax_solar_panels.jpg" id="background">
+        <h1 class="home1-text04" id="txt">Optimization</h1>
+        <a href="#" id="btn" onclick="transition()" v-on:click="generateRec()">Explore</a>
+        <!-- <img src="../static/images/solar_panel_bottom.png" id="panels"> -->
+      </section>
+      <div class="content" id="content">
+        <script src="../static/js/loadCharts.js"></script>
+        <script src="../static/js/slideshow.js" defer></script>
+        <div class="home1-container1">
+          <div class="home1-container2">
+            <script type="text/javascript">
+              window.addEventListener('load', function () {
+                var graph = ('{{ pie }}');
+                createGraph(graph, "pie");
+              })
+            </script>
+            <div id="pie" class="home1-image1"></div>
+            <!-- <img
                   alt="pastedImage"
                   src="../static/images/graph1-6000w.png"
                   loading="lazy"
                   class="home1-image2"
                 /> -->
-                <!-- <h1 class="home1-text07">
+            <!-- <h1 class="home1-text07">
                   <span> rahhhh</span>
                   <br />
                 </h1> -->
-                <script type="text/javascript">
-                  window.addEventListener('load', function () {
-                    var graph = ('{{ line }}');
-                    createGraph(graph, "graph1");
-                  })
-                </script>
-                <div id="graph1" class="home1-image2"></div>
-              </div>
-              <div class="home1-container3" id="container3">
+            <script type="text/javascript">
+              window.addEventListener('load', function () {
+                var graph = ('{{ line }}');
+                createGraph(graph, "graph1");
+              })
+            </script>
+            <div id="graph1" class="home1-image2"></div>
+          </div>
+          <div class="home1-container3" id="container3">
 
-                <!-- <img
+            <!-- <img
                   alt="pastedImage"
                   src="../static/images/graph1-6000w.png"
                   loading="lazy"
                   class="home1-image2"
                 /> -->
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                <div class="home1-text10">
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-                  <div class="list">
-                    <ul class="slideshow-container" id="slideshow-container">
-                      {% for item in rec_list %}
-                        <div class="mySlides fade">
-                          {{ item }}
-
-                        </div>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  <br />
+            <div>
+              <div class="home1-text10">
+                <div class="list">
+                  <ul class="slideshow-container" id="slideshow-container">
+                    <div class="mySlides fade" v-for="item in items">[[item]]</div>
+                  </ul>
                 </div>
-                <a class="prev" onclick="minusSlides()">&#10094;</a>
-                <a class="next" onclick="plusSlides()">&#10095;</a>
+                <br />
               </div>
+              <a class="prev" onclick="minusSlides()">&#10094;</a>
+              <a class="next" onclick="plusSlides()">&#10095;</a>
+            </div>
+          </div>
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+          <script type="module">
+            import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 
-              <!-- Slideshow stuff -->
-              <!-- Slideshow container -->
-              <!-- <div class="slideshow-container" id="slideshow-container">
+            const app = createApp({
+              setup() {
+                var items = ref(["GPT is generating recommendations...","GPT is generating recommendations...","GPT is generating recommendations...","GPT is generating recommendations...","GPT is generating recommendations...","GPT is generating recommendations..."]); // Needs ref to be live updating on the DOM
+                var loaded = ref(false);
+
+                function generateRec() {
+                  console.log("generating recs");
+                  minusSlides();
+                  plusSlides();
+
+                  axios.get('/genrec', {
+                  })
+                    .then(function (response) {
+                      items.value = response.data.items;
+                      for (let i = 0; i < items.length; i++) {
+                        console.log(items[i]);
+                        loaded.value = true;
+                      }
+                      minusSlides();
+                      plusSlides();
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
+                }
+                console.log("grapefruit");
+
+                return { // the vars/functions that the DOM can access. Everything else Vue can interally access
+                  items,
+                  loaded,
+                  generateRec,
+                }
+
+              }
+            })
+            app.config.compilerOptions.delimiters = ['[[', ']]'];
+            const mountedApp = app.mount("#app");
+          </script>
+
+          <!-- Slideshow stuff -->
+          <!-- Slideshow container -->
+          <!-- <div class="slideshow-container" id="slideshow-container">
 
                 Full-width images with number and caption text -->
-                <!-- <div class="mySlides fade" id="1">
+          <!-- <div class="mySlides fade" id="1">
                   <div class="numbertext">1 / 3</div>
                   <div class="text">Caption Text</div>
                 </div> -->
-<!-- 
+          <!-- 
                 <div class="mySlides fade">
                   <div class="numbertext">2 / 3</div>
                   <div class="text">Caption Two</div>
@@ -156,20 +283,21 @@
                   <div class="text">Caption Three</div>
                 </div> -->
 
-                <!-- Next and previous buttons -->
-                <!-- <a class="prev" onclick="minusSlides()">&#10094;</a>
+          <!-- Next and previous buttons -->
+          <!-- <a class="prev" onclick="minusSlides()">&#10094;</a>
                 <a class="next" onclick="plusSlides()">&#10095;</a> -->
-              <!-- </div> -->
-              <br>
-              <!-- End slideshow stuff -->
+          <!-- </div> -->
+          <br>
+          <!-- End slideshow stuff -->
 
 
-            </div>
-          </div>
-        <!-- <div class="e filler" id="filler"></div> -->
+        </div>
       </div>
+      <!-- <div class="e filler" id="filler"></div> -->
     </div>
-    <!-- <script src="../static/js/scrollAppear.js"></script> -->
-    <script src="../static/js/contentTransition.js"></script>
-  </body>
+  </div>
+  <!-- <script src="../static/js/scrollAppear.js"></script> -->
+  <script src="../static/js/contentTransition.js"></script>
+</body>
+
 </html>
