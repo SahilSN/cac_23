@@ -1,5 +1,6 @@
 from home_class import house
 from datetime import datetime as dt, timedelta
+import random
 df_use=house.use_df
 df_gen=house.gen_df
 now=house.datetime.strftime("%Y-%m-%d %H:%M:%S")[:-2]+'00'
@@ -51,7 +52,7 @@ hour_avg=round(hour_avg, 3)
 ## Predicted savings line
 print("hello")
 df_savings=df_use.loc[house.next_days(7,True)][["time","use_HO"]]
-df_savings["use_HO_save"] = df_savings["use_HO"]*0.92
+df_savings["use_HO_save"] = df_savings["use_HO"]*random.uniform(0.88,0.94)
 df_savings_sum=df_savings.loc[::60] # gets every hour
 
 for time in df_savings_sum["time"]: # iterates through each hour and appends the sum of usage to the df_savings_sum
