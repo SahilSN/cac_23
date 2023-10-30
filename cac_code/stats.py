@@ -83,7 +83,7 @@ est_co2e_savings = round(est_co2e_savings)
 est_car_miles = round(est_car_miles)
 est_plane_miles = round(est_plane_miles)
 est_trees = round(est_trees)
-ese_lb_food = round(est_lb_food)
+est_lb_food = round(est_lb_food)
 
 def get_current_usages():
   now2 = dt.now().replace(microsecond=0).replace(second=0) # should be same as now
