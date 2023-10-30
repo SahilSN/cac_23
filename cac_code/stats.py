@@ -65,6 +65,7 @@ est_energy_savings = df_savings_dif.sum()
 
 ## Data: https://css.umich.edu/publications/factsheets/sustainability-indicators/carbon-footprint-factsheet
 ## Data: https://www.usda.gov/media/blog/2015/03/17/power-one-tree-very-air-we-breathe
+## Data: www.newfoodmagazine.com/article/153960/food-waste-climate
 
 # 0.857 lbs CO2e per 1 kWh
 est_co2e_savings = est_energy_savings*0.857
@@ -74,12 +75,15 @@ est_car_miles = est_co2e_savings/0.77
 est_plane_miles = est_co2e_savings/0.75
 # 1 tree absorbs 48 lbs of CO2 per year --> converts to lb per 7 days
 est_trees = est_co2e_savings/((48/365)*7)
+# 1 kg of food saves 2.5 kg of co2 --> multiply co2 saved by 1/2.5
+est_lb_food = est_co2e_savings/2.5
 
 est_energy_savings = round(est_energy_savings)
 est_co2e_savings = round(est_co2e_savings)
 est_car_miles = round(est_car_miles)
 est_plane_miles = round(est_plane_miles)
 est_trees = round(est_trees)
+ese_lb_food = round(est_lb_food)
 
 def get_current_usages():
   now2 = dt.now().replace(microsecond=0).replace(second=0) # should be same as now
