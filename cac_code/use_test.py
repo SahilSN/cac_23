@@ -9,7 +9,7 @@ gen_df=house.gen_df
 now = dt.now().replace(microsecond=0).replace(second=0)
 
 
-dt_list=use_df.time.values.tolist()[335361:]
+dt_list=use_df.time.values.tolist()[335361:439830]
 modeled_use=[]
 percent_saved=[]
 
@@ -24,7 +24,7 @@ for datetime in dt_list:
   for i in bad_rec_dict:
     
     appliance=i
-    value=bad_rec_dict[i]
+    value=bad_rec_dict[i]/10
     
     value_percent=(100-random.uniform(0,value))/100
     
