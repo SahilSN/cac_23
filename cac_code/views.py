@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import sys
 
-from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg,est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees,get_current_usages
+from stats import total_generated, total_consumed, battery_left,generation_efficiency,hour_avg,est_energy_savings,est_co2e_savings,est_car_miles,est_plane_miles,est_trees,est_lb_food,get_current_usages
 
 from charts import compare_bar,main_line,pie, cons_over_time, corr_heatmap#, rec_list
 
@@ -38,7 +38,7 @@ def comparison():
     print('comparison')
     return render_template("comparison.html",bar=compare_bar, est_energy_savings=est_energy_savings,
                            est_co2e_savings=est_co2e_savings,est_car_miles=est_car_miles,est_plane_miles=est_plane_miles,
-                           est_trees=est_trees)
+                           est_trees=est_trees,est_lb_food=est_lb_food)
 
 @app.route("/recommendations",methods=['GET','POST'])
 def recommendations():
