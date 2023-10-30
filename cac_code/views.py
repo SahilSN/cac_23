@@ -28,20 +28,9 @@ def index():
                             )
 
 @app.route("/optimization",methods=['GET','POST'])
-def optimization():
-    msgs = [
-    {
-    "role": "system",
-    "content": "You are an industry expert who advises people on how to lower electricity usage in the home. You are about to be asked by a homeowner about how to reduce energy usage in their home. Please give five concise things the homeowner should do to continue reducing energy consumption in the form of a bullet point list, based on the information that will be provided shortly.  Each tip should include the tip (summary of the idea) and an explanation (why the tip addresses the issue and exactly what needs to be done). Please don't include any solutions that would be a large investment and answer as if you are talking directly to the homeowner. Keep your answer under 1500 characters. Do not repeat advice.\n\nHere is an example interaction with the user:\nUser: Today's percentage of energy usage by location in the format {Location: Percentage}:\n{\"Home office\": 25, \"Fridge\": 33, \"Wine cellar\": 17, \"Garage door\": 9, \"Microwave: 5, \"Living room\": 12}\nYesterday's percentage of energy usage by location in the format [Location: Percentage]:\n{\"Home office\": 33, \"Fridge\": 26, \"Wine cellar\": 17, \"Garage door\": 6, \"Microwave: 4, \"Living room\": 14}\n\nAssistant (you): 1. Unplug unused electronics: Unplug any electronics that are not actively being used to reduce their standby power consumption. Unused home office equipment could contribute to a significant portion of energy usage, accounting for 25% today and 33% yesterday.\n2. Adjust refrigerator temperature: Adjust the temperature setting of the refrigerator to optimize energy efficiency. It may have been set too low, leading to excessive energy consumption. The fridge is responsible for 33% of energy usage today and 26% yesterday.\n3. Optimize wine cellar usage: Minimize wine cellar usage or reduce the temperature setting to reduce energy consumption. While the wine cellar contributes only 17% to energy usage, it remains consistently high both yesterday and today.\n4. Insulate garage doors: Improve the insulation of the garage door to prevent air leakage, especially if it is responsible for 9% of the energy usage today and 6% yesterday. This will reduce the amount of heating or cooling required for this area, resulting in energy savings.\n5. Use microwave sparingly: Minimize the use of the microwave, which accounts for 5% of energy usage today and 4% yesterday. Consider using alternative cooking methods, such as stovetop or oven, for certain meals when feasible.\n6. Optimize living room lighting: Replace inefficient light bulbs with energy-efficient LEDs in the living room and utilize natural lighting whenever possible. The living room contributes to 12% of energy usage, so improving lighting efficiency can make a noticeable difference."
-    },
-    {
-    "role": "user",
-    "content": "User: Today's percentage of energy usage by location in the format {Location: Percentage}:\n{Home office: 25, Fridge: 33, Wine cellar: 17, Garage door: 9, Microwave: 5, Living room: 12}\nYesterday's percentage of energy usage by location in the format [Location: Percentage]:{Home office: 33, Fridge: 26, Wine cellar: 17, Garage door: 6, Microwave: 4, Living room: 14}"
-    }
-    ]
-    finish_reason, content = generate_recommendations(msgs)   
+def optimization():  
     print('optimiiizion')
-    return render_template("optimization.html",pie=pie,rec_list=content,
+    return render_template("optimization.html",pie=pie,
                             line=cons_over_time,)
 
 @app.route("/comparison",methods=['GET','POST'])
@@ -89,44 +78,46 @@ def recommendations():
 @app.route("/genrec", methods=['GET','POST'])
 def genrec():
     print('genrec')
-    # msgs = [
-    #     {
-    #     "role": "system",
-    #     "content": "You are an industry expert who advises people on how to lower electricity usage in the home. You are about to be asked by a homeowner about how to reduce energy usage in their home. Please give three concise things the homeowner should do to continue reducing energy consumption in the form of a bullet point list, based on the information that will be provided shortly.  Each tip should include the tip (summary of the idea) and an explanation (why the tip addresses the issue and exactly what needs to be done). Please don't include any solutions that would be a large investment and answer as if you are talking directly to the homeowner. Keep your answer under 1500 characters. Do not repeat advice.\n\nHere is an example interaction with the user:\nUser: Today's percentage of energy usage by location in the format {Location: Percentage}:\n{\"Home office\": 25, \"Fridge\": 33, \"Wine cellar\": 17, \"Garage door\": 9, \"Microwave: 5, \"Living room\": 12}\nYesterday's percentage of energy usage by location in the format [Location: Percentage]:\n{\"Home office\": 33, \"Fridge\": 26, \"Wine cellar\": 17, \"Garage door\": 6, \"Microwave: 4, \"Living room\": 14}\n\nAssistant (you): 1. Unplug unused electronics: Unplug any electronics that are not actively being used to reduce their standby power consumption. Unused home office equipment could contribute to a significant portion of energy usage, accounting for 25% today and 33% yesterday.\n2. Adjust refrigerator temperature: Adjust the temperature setting of the refrigerator to optimize energy efficiency. It may have been set too low, leading to excessive energy consumption. The fridge is responsible for 33% of energy usage today and 26% yesterday.\n3. Optimize wine cellar usage: Minimize wine cellar usage or reduce the temperature setting to reduce energy consumption. While the wine cellar contributes only 17% to energy usage, it remains consistently high both yesterday and today.\n4. Insulate garage doors: Improve the insulation of the garage door to prevent air leakage, especially if it is responsible for 9% of the energy usage today and 6% yesterday. This will reduce the amount of heating or cooling required for this area, resulting in energy savings.\n5. Use microwave sparingly: Minimize the use of the microwave, which accounts for 5% of energy usage today and 4% yesterday. Consider using alternative cooking methods, such as stovetop or oven, for certain meals when feasible.\n6. Optimize living room lighting: Replace inefficient light bulbs with energy-efficient LEDs in the living room and utilize natural lighting whenever possible. The living room contributes to 12% of energy usage, so improving lighting efficiency can make a noticeable difference."
-    #     },
-    #     {
-    #     "role": "user",
-    #     "content": "User: Today's percentage of energy usage by location in the format {Location: Percentage}:\n{Home office: 25, Fridge: 33, Wine cellar: 17, Garage door: 9, Microwave: 5, Living room: 12}\nYesterday's percentage of energy usage by location in the format [Location: Percentage]:{Home office: 33, Fridge: 26, Wine cellar: 17, Garage door: 6, Microwave: 4, Living room: 14}"
-    #     }
-    # ]
-    roles = request.get_json()['roles']
-    contents = request.get_json()['contents']
+    msgs = [
+    {
+        "role": "system",
+        "content": "You are an industry expert who advises people on how to lower electricity usage in the home. You are about to be asked by a homeowner about how to reduce energy usage in their home. Please give five concise things the homeowner should do to continue reducing energy consumption in the form of a bullet point list, based on the information that will be provided shortly.  Each tip should include the tip (summary of the idea) and an explanation (why the tip addresses the issue and exactly what needs to be done). Please don't include any solutions that would be a large investment and answer as if you are talking directly to the homeowner. Keep your answer under 1500 characters. Do not repeat advice.\n\nHere is an example interaction with the user:\nUser: Today's percentage of energy usage by location in the format {Location: Percentage}:\n{\"Home office\": 25, \"Fridge\": 33, \"Wine cellar\": 17, \"Garage door\": 9, \"Microwave: 5, \"Living room\": 12}\nYesterday's percentage of energy usage by location in the format [Location: Percentage]:\n{\"Home office\": 33, \"Fridge\": 26, \"Wine cellar\": 17, \"Garage door\": 6, \"Microwave: 4, \"Living room\": 14}\n\nAssistant (you): 1. Unplug unused electronics: Unplug any electronics that are not actively being used to reduce their standby power consumption. Unused home office equipment could contribute to a significant portion of energy usage, accounting for 25% today and 33% yesterday.\n2. Adjust refrigerator temperature: Adjust the temperature setting of the refrigerator to optimize energy efficiency. It may have been set too low, leading to excessive energy consumption. The fridge is responsible for 33% of energy usage today and 26% yesterday.\n3. Optimize wine cellar usage: Minimize wine cellar usage or reduce the temperature setting to reduce energy consumption. While the wine cellar contributes only 17% to energy usage, it remains consistently high both yesterday and today.\n4. Insulate garage doors: Improve the insulation of the garage door to prevent air leakage, especially if it is responsible for 9% of the energy usage today and 6% yesterday. This will reduce the amount of heating or cooling required for this area, resulting in energy savings.\n5. Use microwave sparingly: Minimize the use of the microwave, which accounts for 5% of energy usage today and 4% yesterday. Consider using alternative cooking methods, such as stovetop or oven, for certain meals when feasible.\n6. Optimize living room lighting: Replace inefficient light bulbs with energy-efficient LEDs in the living room and utilize natural lighting whenever possible. The living room contributes to 12% of energy usage, so improving lighting efficiency can make a noticeable difference."
+    },
+    {
+        "role": "user",
+        "content": "User: Today's percentage of energy usage by location in the format {Location: Percentage}:\n{Home office: 25, Fridge: 33, Wine cellar: 17, Garage door: 9, Microwave: 5, Living room: 12}\nYesterday's percentage of energy usage by location in the format [Location: Percentage]:{Home office: 33, Fridge: 26, Wine cellar: 17, Garage door: 6, Microwave: 4, Living room: 14}"
+    }
+    ]
+    finish_reason, content = generate_recommendations(msgs) 
+    print(content)
+    # roles = request.get_json()['roles']
+    # contents = request.get_json()['contents']
     # print(roles)
     # print(type(roles))
     # print(contents)
     # print(type(contents))
-    print(roles)
-    if len(roles) >= 13:
-        roles.pop(1)
-        roles.pop(1)
-        contents.pop(1)
-        contents.pop(1)
-        print("OH NO!")
-        print(roles)
+    # print(roles)
+    # if len(roles) >= 13:
+    #     roles.pop(1)
+    #     roles.pop(1)
+    #     contents.pop(1)
+    #     contents.pop(1)
+    #     print("OH NO!")
+    #     print(roles)
     
 
     # get percentage data, then format into whatever i used earlier
-    data = get_current_usages()
-    print("aaaaaaaaaaaaaaaaa")
-    print(data)
-    roles.append("user")
-    contents.append([data])
-    msgs = create_msgs(roles,contents)
-    # msgs.append({"role": "user", "content": data})
-    print(msgs)
-    finish_reason, content = generate_recommendations(msgs)
-    print(content)
-    roles.append("assistant")
-    contents.append(content)
+    # data = get_current_usages()
+    # print("aaaaaaaaaaaaaaaaa")
+    # print(data)
+    # roles.append("user")
+    # contents.append([data])
+    # msgs = create_msgs(roles,contents)
+    # # msgs.append({"role": "user", "content": data})
+    # print(msgs)
+    # finish_reason, content = generate_recommendations(msgs)
+    # print(content)
+    # roles.append("assistant")
+    # contents.append(content)
 
-    return jsonify({"error": "0", "roles": roles, "contents": contents}) 
+    return jsonify({"error": "0", "items": content}) 
