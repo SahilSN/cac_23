@@ -8,3 +8,4 @@ datetime
 plotly
 openai
 python-dotenv
+gunicorn==19.7.1
